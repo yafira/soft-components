@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import 'electrocute-ui/dist/index.css';
 import './globals.css';
 import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';

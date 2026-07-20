@@ -18,8 +18,12 @@ export default function LibraryGrid() {
 
   const knitPathRef = useRef<SVGPathElement>(null);
 
+  const matrixPadsRef = useRef<(SVGRectElement | null)[]>([]);
+  const bendPathRef = useRef<SVGPathElement>(null);
+
   const motorRef = useRef<SVGCircleElement>(null);
   const ringRef = useRef<SVGCircleElement>(null);
+  const thermoPatchRef = useRef<SVGRectElement>(null);
 
   const einkPanelRef = useRef<SVGRectElement>(null);
 
@@ -99,6 +103,23 @@ export default function LibraryGrid() {
     setTimeout(() => path.setAttribute('d', rest), reduced ? 0 : 500);
   };
 
+  const playMatrix = () => {
+    const pads = matrixPadsRef.current.filter(Boolean) as SVGRectElement[];
+    const reduced = prefersReducedMotion();
+    pads.forEach((pad, i) => {
+      setTimeout(() => pad.setAttribute('fill', 'var(--wisteria-deep)'), reduced ? 0 : i * 60);
+      setTimeout(() => pad.setAttribute('fill', 'var(--card)'), reduced ? 0 : i * 60 + 260);
+    });
+  };
+
+  const playBend = () => {
+    const path = bendPathRef.current;
+    if (!path) return;
+    const reduced = prefersReducedMotion();
+    path.setAttribute('d', 'M 30 60 Q 110 30 190 60');
+    setTimeout(() => path.setAttribute('d', 'M 30 60 Q 110 60 190 60'), reduced ? 0 : 480);
+  };
+
   const playHaptic = () => {
     const motor = motorRef.current;
     const ring = ringRef.current;
@@ -113,6 +134,18 @@ export default function LibraryGrid() {
       animate(motor, { scale: 1 }, { type: 'spring', stiffness: 200, damping: 10, duration: reduced ? 0 : undefined });
       ring.setAttribute('r', '14');
     }, reduced ? 0 : 480);
+  };
+
+  const playThermo = () => {
+    const patch = thermoPatchRef.current;
+    if (!patch) return;
+    const reduced = prefersReducedMotion();
+    patch.style.transition = reduced ? 'none' : 'fill 900ms ease-in';
+    patch.setAttribute('fill', '#f6c8d8');
+    setTimeout(() => {
+      patch.style.transition = reduced ? 'none' : 'fill 1800ms ease-out';
+      patch.setAttribute('fill', '#cdc1ee');
+    }, reduced ? 0 : 900);
   };
 
   const playEink = () => {
@@ -208,6 +241,48 @@ export default function LibraryGrid() {
           </div>
         </article>
 
+        <article className="card">
+          <button className="demo-trigger" aria-label="animate the capacitive touch matrix demo" onClick={playMatrix}>
+            <svg viewBox="0 0 220 150" role="img" className="thumb">
+              <title>capacitive touch matrix demo</title>
+              {Array.from({ length: 9 }).map((_, i) => (
+                <rect
+                  key={i}
+                  ref={(el) => { matrixPadsRef.current[i] = el; }}
+                  x={50 + (i % 3) * 42} y={30 + Math.floor(i / 3) * 24}
+                  width="34" height="18" rx="4"
+                  fill="var(--card)" stroke="var(--wisteria-deep)" strokeWidth={1.2}
+                />
+              ))}
+              <text x="110" y="118" textAnchor="middle" className="mono">multi-touch</text>
+              <text x="110" y="138" textAnchor="middle" className="state">grid → independent pads</text>
+            </svg>
+          </button>
+          <div className="card-body">
+            <h2><Link href="/components/capacitive-touch-matrix">capacitive touch matrix</Link></h2>
+            <p>copper-tape pads that sense multiple touches at once.</p>
+            <Link className="more" href="/components/capacitive-touch-matrix">how it works →</Link>
+          </div>
+        </article>
+
+        <article className="card">
+          <button className="demo-trigger" aria-label="animate the fabric bend sensor demo" onClick={playBend}>
+            <svg viewBox="0 0 220 150" role="img" className="thumb">
+              <title>fabric bend sensor demo</title>
+              <path ref={bendPathRef} d="M 30 60 Q 110 60 190 60" fill="none"
+                    stroke="var(--matcha-deep)" strokeWidth={4} strokeLinecap="round"
+                    transform="translate(0, 15)" />
+              <text x="110" y="118" textAnchor="middle" className="mono">R rises</text>
+              <text x="110" y="138" textAnchor="middle" className="state">bend → resistance</text>
+            </svg>
+          </button>
+          <div className="card-body">
+            <h2><Link href="/components/fabric-bend-sensor">fabric bend sensor</Link></h2>
+            <p>resistive ink that reads how far a joint has bent.</p>
+            <Link className="more" href="/components/fabric-bend-sensor">how it works →</Link>
+          </div>
+        </article>
+
       </div>
 
       <div className="category-label">output</div>
@@ -227,6 +302,22 @@ export default function LibraryGrid() {
             <h2><Link href="/components/haptic-motor">haptic motor</Link></h2>
             <p>a felt button that talks back with its own vibration signature.</p>
             <Link className="more" href="/components/haptic-motor">how it works →</Link>
+          </div>
+        </article>
+
+        <article className="card">
+          <button className="demo-trigger" aria-label="animate the thermochromic reveal demo" onClick={playThermo}>
+            <svg viewBox="0 0 220 150" role="img" className="thumb">
+              <title>thermochromic reveal demo</title>
+              <rect ref={thermoPatchRef} x="65" y="28" width="90" height="60" rx="10" fill="#cdc1ee" stroke="var(--line)" />
+              <text x="110" y="118" textAnchor="middle" className="mono">warms · fades</text>
+              <text x="110" y="138" textAnchor="middle" className="state">heat → color shift</text>
+            </svg>
+          </button>
+          <div className="card-body">
+            <h2><Link href="/components/thermochromic-reveal">thermochromic reveal</Link></h2>
+            <p>a fabric patch that changes color as conductive thread warms it.</p>
+            <Link className="more" href="/components/thermochromic-reveal">how it works →</Link>
           </div>
         </article>
 

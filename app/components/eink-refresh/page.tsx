@@ -58,7 +58,7 @@ export default function EinkRefreshPage() {
           generation to stay quiet.
         </p>
         <p className="foot-nav">
-          <Link href="/components/knit-stretch-sensor">← knit stretch sensor</Link>
+          <Link href="/components/thermochromic-reveal">← thermochromic reveal</Link>
           <span><Link href="/#library">back to the library</Link></span>
         </p>
       </section>

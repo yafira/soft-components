@@ -56,8 +56,8 @@ export default function KnitStretchPage() {
           per-wear rather than assuming a fixed zero point.
         </p>
         <p className="foot-nav">
-          <Link href="/components/haptic-motor">← haptic motor</Link>
-          <span>next: <Link href="/components/eink-refresh">e-ink refresh →</Link></span>
+          <Link href="/components/pressure-sensor">← pressure sensor</Link>
+          <span>next: <Link href="/components/capacitive-touch-matrix">capacitive touch matrix →</Link></span>
         </p>
       </section>
 

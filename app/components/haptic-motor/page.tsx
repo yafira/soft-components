@@ -73,8 +73,8 @@ tl.to(motor, { scale: 1.18, duration: 0.12 })
           might use without looking at it.
         </p>
         <p className="foot-nav">
-          <Link href="/components/pressure-sensor">← pressure sensor</Link>
-          <span>next: <Link href="/components/knit-stretch-sensor">knit stretch sensor →</Link></span>
+          <Link href="/components/fabric-bend-sensor">← fabric bend sensor</Link>
+          <span>next: <Link href="/components/thermochromic-reveal">thermochromic reveal →</Link></span>
         </p>
       </section>
 
