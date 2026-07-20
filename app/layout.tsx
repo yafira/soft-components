@@ -15,6 +15,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* eslint-disable-next-line @next/next/no-page-custom-font --
+            this rule targets the pages-router _document pattern; in the app
+            router, next/font/google is the recommended alternative — worth
+            switching to once you have normal network access to verify the
+            build (this sandbox's egress allowlist doesn't include Google
+            Fonts, so it couldn't be tested here). */}
         <link
           href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=Pixelify+Sans:wght@400;500&display=swap"
           rel="stylesheet"

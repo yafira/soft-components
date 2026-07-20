@@ -16,6 +16,13 @@ export default function LibraryGrid() {
   const veloRef = useRef<SVGRectElement>(null);
   const pressValueRef = useRef<SVGTextElement>(null);
 
+  const knitPathRef = useRef<SVGPathElement>(null);
+
+  const motorRef = useRef<SVGCircleElement>(null);
+  const ringRef = useRef<SVGCircleElement>(null);
+
+  const einkPanelRef = useRef<SVGRectElement>(null);
+
   const playButton = () => {
     const felt = feltRef.current;
     const state = btnStateRef.current;
@@ -82,11 +89,52 @@ export default function LibraryGrid() {
     }, reduced ? 0 : 550);
   };
 
+  const playKnit = () => {
+    const path = knitPathRef.current;
+    if (!path) return;
+    const reduced = prefersReducedMotion();
+    const stretched = 'M 20 60 L 55 44 L 95 76 L 135 44 L 175 76 L 200 60';
+    const rest = 'M 20 60 L 40 44 L 60 76 L 80 44 L 100 76 L 120 60';
+    path.setAttribute('d', stretched);
+    setTimeout(() => path.setAttribute('d', rest), reduced ? 0 : 500);
+  };
+
+  const playHaptic = () => {
+    const motor = motorRef.current;
+    const ring = ringRef.current;
+    if (!motor || !ring) return;
+    const reduced = prefersReducedMotion();
+    animate(motor, { scale: 1.2 }, { type: 'spring', stiffness: 250, damping: 12, duration: reduced ? 0 : undefined });
+    ring.setAttribute('r', '34');
+    ring.setAttribute('opacity', '0.7');
+    ring.style.transition = reduced ? 'none' : 'opacity 480ms ease-out';
+    requestAnimationFrame(() => ring.setAttribute('opacity', '0'));
+    setTimeout(() => {
+      animate(motor, { scale: 1 }, { type: 'spring', stiffness: 200, damping: 10, duration: reduced ? 0 : undefined });
+      ring.setAttribute('r', '14');
+    }, reduced ? 0 : 480);
+  };
+
+  const playEink = () => {
+    const panel = einkPanelRef.current;
+    if (!panel) return;
+    const reduced = prefersReducedMotion();
+    if (reduced) return;
+    let flashes = 0;
+    const flick = () => {
+      panel.setAttribute('fill', flashes % 2 === 0 ? '#2a2530' : '#f4f0fb');
+      flashes += 1;
+      if (flashes < 4) setTimeout(flick, 90);
+      else panel.setAttribute('fill', '#f4f0fb');
+    };
+    flick();
+  };
+
   return (
     <section id="library" className="wrap">
+      <div className="category-label">input</div>
       <div className="grid">
 
-        {/* soft button */}
         <article className="card">
           <button className="demo-trigger" aria-label="animate the soft button demo" onClick={playButton}>
             <svg viewBox="0 0 220 150" role="img" className="thumb">
@@ -101,13 +149,11 @@ export default function LibraryGrid() {
           </button>
           <div className="card-body">
             <h2><Link href="/components/soft-button">soft button</Link></h2>
-            <p>a felt dome over a conductive pad. press down, the circuit closes.
-               the gentlest possible digital input.</p>
+            <p>a felt dome over a conductive pad. the gentlest possible digital input.</p>
             <Link className="more" href="/components/soft-button">how it works →</Link>
           </div>
         </article>
 
-        {/* soft potentiometer */}
         <article className="card">
           <button className="demo-trigger" aria-label="animate the soft potentiometer demo" onClick={playPot}>
             <svg viewBox="0 0 220 150" role="img" className="thumb">
@@ -120,13 +166,11 @@ export default function LibraryGrid() {
           </button>
           <div className="card-body">
             <h2><Link href="/components/soft-potentiometer">soft potentiometer</Link></h2>
-            <p>a wiper gliding along conductive fabric. where you touch becomes
-               a number your circuit can read.</p>
+            <p>a wiper gliding along conductive fabric. where you touch becomes a number.</p>
             <Link className="more" href="/components/soft-potentiometer">how it works →</Link>
           </div>
         </article>
 
-        {/* pressure sensor */}
         <article className="card">
           <button className="demo-trigger" aria-label="animate the pressure sensor demo" onClick={playPressure}>
             <svg viewBox="0 0 220 150" role="img" className="thumb">
@@ -141,20 +185,87 @@ export default function LibraryGrid() {
           </button>
           <div className="card-body">
             <h2><Link href="/components/pressure-sensor">pressure sensor</Link></h2>
-            <p>velostat between two conductive layers. squeeze harder and
-               resistance falls. force becomes an analog signal.</p>
+            <p>velostat between conductive fabric. squeeze harder, resistance falls.</p>
             <Link className="more" href="/components/pressure-sensor">how it works →</Link>
+          </div>
+        </article>
+
+        <article className="card">
+          <button className="demo-trigger" aria-label="animate the knit stretch sensor demo" onClick={playKnit}>
+            <svg viewBox="0 0 220 150" role="img" className="thumb">
+              <title>knit stretch sensor demo</title>
+              <path ref={knitPathRef} d="M 20 60 L 40 44 L 60 76 L 80 44 L 100 76 L 120 60"
+                    fill="none" stroke="var(--wisteria-deep)" strokeWidth={3} strokeLinecap="round"
+                    transform="translate(50, 15)" />
+              <text x="110" y="118" textAnchor="middle" className="mono">R rises</text>
+              <text x="110" y="138" textAnchor="middle" className="state">stretch → resistance</text>
+            </svg>
+          </button>
+          <div className="card-body">
+            <h2><Link href="/components/knit-stretch-sensor">knit stretch sensor</Link></h2>
+            <p>conductive knit that reads how far it&apos;s been pulled.</p>
+            <Link className="more" href="/components/knit-stretch-sensor">how it works →</Link>
+          </div>
+        </article>
+
+      </div>
+
+      <div className="category-label">output</div>
+      <div className="grid">
+
+        <article className="card">
+          <button className="demo-trigger" aria-label="animate the haptic motor demo" onClick={playHaptic}>
+            <svg viewBox="0 0 220 150" role="img" className="thumb">
+              <title>haptic motor demo</title>
+              <circle ref={ringRef} cx="110" cy="60" r="14" fill="none" stroke="var(--wisteria-deep)" strokeWidth={2} opacity={0} />
+              <circle ref={motorRef} cx="110" cy="60" r="16" fill="var(--wisteria)" stroke="var(--wisteria-deep)" strokeWidth={1.5} />
+              <text x="110" y="118" textAnchor="middle" className="mono">buzz</text>
+              <text x="110" y="138" textAnchor="middle" className="state">press → felt confirms</text>
+            </svg>
+          </button>
+          <div className="card-body">
+            <h2><Link href="/components/haptic-motor">haptic motor</Link></h2>
+            <p>a felt button that talks back with its own vibration signature.</p>
+            <Link className="more" href="/components/haptic-motor">how it works →</Link>
+          </div>
+        </article>
+
+      </div>
+
+      <div className="category-label">display</div>
+      <div className="grid">
+
+        <article className="card">
+          <button className="demo-trigger" aria-label="animate the e-ink refresh demo" onClick={playEink}>
+            <svg viewBox="0 0 220 150" role="img" className="thumb">
+              <title>e-ink refresh demo</title>
+              <rect ref={einkPanelRef} x="50" y="30" width="120" height="60" rx="8" fill="#f4f0fb" stroke="var(--line)" />
+              <text x="110" y="118" textAnchor="middle" className="mono">flash · settle</text>
+              <text x="110" y="138" textAnchor="middle" className="state">refresh → clears ghosting</text>
+            </svg>
+          </button>
+          <div className="card-body">
+            <h2><Link href="/components/eink-refresh">e-ink refresh</Link></h2>
+            <p>the flash-to-black cycle that clears a slow display before it settles.</p>
+            <Link className="more" href="/components/eink-refresh">how it works →</Link>
           </div>
         </article>
 
       </div>
 
       <style>{`
+        .category-label {
+          font-family: var(--font-display);
+          font-size: 0.95rem;
+          color: var(--wisteria-deep);
+          margin: 2.2rem 0 0.9rem;
+        }
+        .category-label:first-child { margin-top: 0; }
         .grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
           gap: 1.4rem;
-          padding-bottom: 2rem;
+          padding-bottom: 1rem;
         }
         .card {
           background: var(--card);

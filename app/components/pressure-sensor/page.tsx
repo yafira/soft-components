@@ -60,7 +60,7 @@ export default function PressureSensorPage() {
         </p>
         <p className="foot-nav">
           <Link href="/components/soft-potentiometer">← soft potentiometer</Link>
-          <span><Link href="/#library">back to the library</Link></span>
+          <span>next: <Link href="/components/haptic-motor">haptic motor →</Link></span>
         </p>
       </section>
 
