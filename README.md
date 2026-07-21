@@ -12,14 +12,14 @@ _poetronics_: electronics with the sensibility of a poem.
 ## the library
 <table>
   <tr>
-    <td><img src="public/screenshots/sc1.gif" width="300"></td>
-    <td><img src="public/screenshots/sc2.gif" width="300"></td>
-    <td><img src="public/screenshots/sc3.gif" width="300"></td>
+    <td><img src="public/screenshots/sc1.gif" width="250"></td>
+    <td><img src="public/screenshots/sc2.gif" width="250"></td>
+    <td><img src="public/screenshots/sc3.gif" width="250"></td>
   </tr>
   <tr>
-    <td><img src="public/screenshots/sc4.gif" width="300"></td>
-    <td><img src="public/screenshots/sc5.gif" width="300"></td>
-    <td><img src="public/screenshots/sc6.gif" width="300"></td>
+    <td><img src="public/screenshots/sc4.gif" width="250"></td>
+    <td><img src="public/screenshots/sc5.gif" width="250"></td>
+    <td><img src="public/screenshots/sc6.gif" width="250"></td>
   </tr>
 </table>
 
