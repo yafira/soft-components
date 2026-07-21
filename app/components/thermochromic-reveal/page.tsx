@@ -4,7 +4,7 @@ import LazyThermochromicRevealDemo from '@/components/LazyThermochromicRevealDem
 
 export const metadata: Metadata = {
   title: 'thermochromic reveal — soft components',
-  description: 'conductive thread heats a thermochromic patch until it changes color, then fades slowly as it cools.',
+  description: 'Conductive thread heats a thermochromic patch until it changes color, then fades slowly as it cools.',
 };
 
 export default function ThermochromicRevealPage() {
@@ -14,7 +14,7 @@ export default function ThermochromicRevealPage() {
         <p className="crumb"><Link href="/#library">library</Link> / output</p>
         <h1>thermochromic reveal</h1>
         <p className="lede">
-          conductive thread stitched behind a patch of thermochromic ink. run
+          Conductive thread stitched behind a patch of thermochromic ink. Run
           current through the thread, the patch warms, and the color shifts —
           slowly, the way heat actually moves through fabric.
         </p>
@@ -28,19 +28,19 @@ export default function ThermochromicRevealPage() {
       <section aria-labelledby="how-h">
         <h2 id="how-h">how it works</h2>
         <p>
-          thermochromic ink contains microcapsules of leuco dye that shift
+          Thermochromic ink contains microcapsules of leuco dye that shift
           between colored and clear (or between two colors) at a specific
-          activation temperature. stitch conductive thread in a dense zigzag
+          activation temperature. Stitch conductive thread in a dense zigzag
           behind the ink and drive current through it — resistive heating
           warms the patch, crossing the activation threshold and revealing the
           color underneath.
         </p>
         <p>
-          the demo drives its color transition through the same spring math
+          The demo drives its color transition through the same spring math
           used everywhere else in this library, but tuned into an{' '}
           <strong>overdamped</strong> regime — a damping ratio above 1, so the
           value approaches its target with a lag but no overshoot or
-          oscillation. that&apos;s a reasonable stand-in for heat diffusing
+          oscillation. That&apos;s a reasonable stand-in for heat diffusing
           through fabric: it climbs quickly while thread is driven, then
           fades slowly once power cuts, because losing heat to open air is
           slower than gaining it from a direct current source.
@@ -50,9 +50,9 @@ export default function ThermochromicRevealPage() {
       <section aria-labelledby="context-h">
         <h2 id="context-h">when to use it</h2>
         <p>
-          a display with no pixels: a garment patch that reveals a message
+          A display with no pixels: a garment patch that reveals a message
           when worn against skin, a color that confirms &ldquo;this circuit
-          has been active&rdquo; without any screen at all. slow by design —
+          has been active&rdquo; without any screen at all. Slow by design —
           not suited to anything needing quick feedback, but well suited to
           objects meant to be lived with rather than glanced at.
         </p>

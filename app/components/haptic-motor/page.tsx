@@ -4,7 +4,7 @@ import LazyHapticMotorDemo from '@/components/LazyHapticMotorDemo';
 
 export const metadata: Metadata = {
   title: 'haptic motor — soft components',
-  description: 'a felt button that talks back: three vibration signatures, and the physics of a felt-damped pulse.',
+  description: 'A felt button that talks back: three vibration signatures, and the physics of a felt-damped pulse.',
 };
 
 export default function HapticMotorPage() {
@@ -14,8 +14,8 @@ export default function HapticMotorPage() {
         <p className="crumb"><Link href="/#library">library</Link> / output</p>
         <h1>haptic motor</h1>
         <p className="lede">
-          the first output in the library. a small vibration motor under felt,
-          confirming a press without a sound or a light. try the three
+          The first output in the library. A small vibration motor under felt,
+          confirming a press without a sound or a light. Try the three
           signatures below.
         </p>
       </header>
@@ -28,34 +28,45 @@ export default function HapticMotorPage() {
       <section aria-labelledby="how-h">
         <h2 id="how-h">how it works</h2>
         <p>
-          a small ERM (eccentric rotating mass) or LRA (linear resonant
-          actuator) motor sits just under the felt. drive it and it vibrates;
-          vary the drive signal&apos;s timing and you get a different feeling
-          &mdash; a single tap, a double tap, a rising buzz. the waveform below
-          the motor is the <em>envelope</em>: how strongly it&apos;s driven at
-          each instant. that shape is the whole signature.
+          This demo models an ERM (eccentric rotating mass) motor
+          specifically — the small coin-shaped vibration motors in most
+          phones and controllers. Inside, an off-center weight spins on a
+          shaft; because the mass is lopsided, spinning it fast makes the
+          whole housing shake. The dark wedge in the illustration above is
+          that eccentric weight, shown at rest — the buzz itself comes
+          through the rings and the sound, rather than an animated spin,
+          keeping the visual quieter while the signature plays.
         </p>
         <p>
-          this demo runs the three envelopes as <a href="https://gsap.com">GSAP</a>{' '}
-          timelines rather than single tweens, because a haptic signature is
-          inherently a sequence of timed events — a pulse, a pause, a second
-          pulse — which is exactly what a timeline is for. the motor&apos;s
-          scale bounce after each pulse uses an elastic ease, echoing how a
-          real ERM motor keeps spinning briefly after power cuts.
+          The buzz is real audio, not a sound effect file — a single Web
+          Audio triangle-wave oscillator whose gain is driven by the same
+          envelope function as the visuals. Kept deliberately simple: one
+          oscillator, one gain node, straight to the speakers — fewer moving
+          parts means fewer places for playback to go wrong across
+          different browsers.
         </p>
-        <pre><code>{`const tl = gsap.timeline();
-tl.to(motor, { scale: 1.18, duration: 0.12 })
-  .to(motor, { scale: 1, duration: 0.4, ease: "elastic.out(1, 0.5)" }, 0.12);`}</code></pre>
+        <pre><code>{`gainNode.gain.setValueAtTime(0.0001, now);
+for (let i = 1; i <= samples; i++) {
+  const t = (i / samples) * duration;
+  gainNode.gain.linearRampToValueAtTime(envelope(t) * 0.4, now + t);
+}`}</code></pre>
+        <p>
+          This is also why a <a href="https://gsap.com">GSAP</a> timeline
+          fits the job: a haptic signature is a sequence of timed events — a
+          pulse, a pause, a second pulse — exactly what a timeline
+          orchestrates, keeping the audio gain and the ring pulses in sync
+          with each other.
+        </p>
       </section>
 
       <section aria-labelledby="material-h">
         <h2 id="material-h">the material</h2>
         <p>
-          felt doesn&apos;t just sit on top of the motor — it filters it.
-          thicker or denser felt damps high-frequency buzz into a softer,
+          Felt doesn&apos;t just sit on top of the motor — it filters it.
+          Thicker or denser felt damps high-frequency buzz into a softer,
           rounder thump; thinner felt lets more of the motor&apos;s raw
-          frequency through. the same motor under different felt thicknesses
-          feels like a different motor. on the soft computer, each of the four
+          frequency through. The same motor under different felt thicknesses
+          feels like a different motor. On the soft computer, each of the four
           felt buttons pairs a distinct signature with its own felt density, so
           the color and the feeling are designed together, not just the
           software pattern.
@@ -65,10 +76,10 @@ tl.to(motor, { scale: 1.18, duration: 0.12 })
       <section aria-labelledby="context-h">
         <h2 id="context-h">when to use it</h2>
         <p>
-          anywhere a soft button needs to confirm itself without a click, a
-          light, or a screen. a rising ramp reads as building intensity or
+          Anywhere a soft button needs to confirm itself without a click, a
+          light, or a screen. A rising ramp reads as building intensity or
           loading; a double tap reads as acknowledgment; a single sharp pulse
-          reads as a simple yes. keep signatures distinct enough to tell apart
+          reads as a simple yes. Keep signatures distinct enough to tell apart
           by feel alone — that&apos;s the whole point of a felt object you
           might use without looking at it.
         </p>

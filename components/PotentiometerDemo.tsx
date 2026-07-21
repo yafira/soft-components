@@ -114,7 +114,7 @@ export default function PotentiometerDemo() {
         />
         <text x="280" y="118" textAnchor="middle" className="pot-readout">{value.toFixed(2)}</text>
       </svg>
-      <p className="hint">drag the wiper, or focus it and use arrow keys</p>
+      <p className="hint">Drag the wiper, or focus it and use arrow keys</p>
 
       <style>{`
         .pot-demo { text-align: center; }

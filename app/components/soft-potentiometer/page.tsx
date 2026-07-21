@@ -4,7 +4,7 @@ import LazyPotentiometerDemo from '@/components/LazyPotentiometerDemo';
 
 export const metadata: Metadata = {
   title: 'soft potentiometer — soft components',
-  description: 'a fabric potentiometer: drag the wiper along a conductive strip and watch position become a value.',
+  description: 'A fabric potentiometer: drag the wiper along a conductive strip and watch position become a value.',
 };
 
 export default function SoftPotentiometerPage() {
@@ -14,8 +14,8 @@ export default function SoftPotentiometerPage() {
         <p className="crumb"><Link href="/#library">library</Link> / input</p>
         <h1>soft potentiometer</h1>
         <p className="lede">
-          a strip of resistive fabric and something to touch it with. where you
-          press becomes a number. drag the wiper below.
+          A strip of resistive fabric and something to touch it with. Where you
+          press becomes a number. Drag the wiper below.
         </p>
       </header>
 
@@ -27,16 +27,16 @@ export default function SoftPotentiometerPage() {
       <section aria-labelledby="how-h">
         <h2 id="how-h">how it works</h2>
         <p>
-          the strip is a resistor you can touch — carbon-loaded stretch fabric
-          or a length of resistive yarn. wire one end to power, the other to
-          ground, and the whole strip becomes a voltage gradient. the wiper (a
+          The strip is a resistor you can touch — carbon-loaded stretch fabric
+          or a length of resistive yarn. Wire one end to power, the other to
+          ground, and the whole strip becomes a voltage gradient. The wiper (a
           fingertip on conductive fabric, a stitched contact, a bead) taps that
           gradient wherever it touches: the voltage it reads is proportional to
-          position. one analog pin, and your microcontroller knows where you
+          position. One analog pin, and your microcontroller knows where you
           are.
         </p>
         <p>
-          the digital wiper above chases your pointer through the same
+          The digital wiper above chases your pointer through the same
           hand-rolled damped spring from the soft button page — but tuned
           looser, because a wiper glides where a button yields.
         </p>
@@ -45,8 +45,8 @@ export default function SoftPotentiometerPage() {
       <section aria-labelledby="context-h">
         <h2 id="context-h">when to use it</h2>
         <p>
-          continuous, expressive input on textile: volume on a sleeve,
-          brightness on a cushion seam, pitch along a scarf. because the
+          Continuous, expressive input on textile: volume on a sleeve,
+          brightness on a cushion seam, pitch along a scarf. Because the
           reading drifts with pressure and humidity, treat it as a gesture
           instrument rather than a precision dial — smooth the signal, and let
           relative motion matter more than absolute value.

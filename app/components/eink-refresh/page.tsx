@@ -4,7 +4,7 @@ import LazyEinkRefreshDemo from '@/components/LazyEinkRefreshDemo';
 
 export const metadata: Metadata = {
   title: 'e-ink refresh — soft components',
-  description: 'the flash-to-black refresh cycle of an e-ink display, and why the flicker is a feature.',
+  description: 'The flash-to-black refresh cycle of an e-ink display, and why the flicker is a feature.',
 };
 
 export default function EinkRefreshPage() {
@@ -14,8 +14,8 @@ export default function EinkRefreshPage() {
         <p className="crumb"><Link href="/#library">library</Link> / display</p>
         <h1>e-ink refresh</h1>
         <p className="lede">
-          the first display in the library. e-ink doesn&apos;t fade between
-          states like a screen — it flashes. try a partial refresh, then a full
+          The first display in the library. E-ink doesn&apos;t fade between
+          states like a screen — it flashes. Try a partial refresh, then a full
           one, and watch the difference.
         </p>
       </header>
@@ -28,19 +28,19 @@ export default function EinkRefreshPage() {
       <section aria-labelledby="how-h">
         <h2 id="how-h">how it works</h2>
         <p>
-          an e-ink pixel is a capsule of charged black and white particles.
-          apply a field and the particles migrate to the surface, flipping the
-          pixel&apos;s color. the particles don&apos;t all move cleanly on the
+          An e-ink pixel is a capsule of charged black and white particles.
+          Apply a field and the particles migrate to the surface, flipping the
+          pixel&apos;s color. The particles don&apos;t all move cleanly on the
           first pass, though — some lag behind, leaving a faint trace of the
-          old image, called ghosting. a full refresh clears it by driving every
+          old image, called ghosting. A full refresh clears it by driving every
           pixel black, then white, several times before settling on the new
-          content, forcing every particle to fully migrate at least once. a
+          content, forcing every particle to fully migrate at least once. A
           partial refresh skips that and updates only the changed pixels
           directly — fast, but it can accumulate ghosting over many partial
           refreshes.
         </p>
         <p>
-          the flicker in this demo is a real <a href="https://gsap.com">GSAP</a>{' '}
+          The flicker in this demo is a real <a href="https://gsap.com">GSAP</a>{' '}
           timeline stepping the panel through solid black and white several
           times before revealing new text — not a CSS blink, an actual
           simulation of the clearing pass a real e-ink controller runs.
@@ -50,9 +50,9 @@ export default function EinkRefreshPage() {
       <section aria-labelledby="context-h">
         <h2 id="context-h">when to use it</h2>
         <p>
-          anywhere content changes slowly and battery or calm matters more than
+          Anywhere content changes slowly and battery or calm matters more than
           speed: a bedside reader, a slow-generated text object, a display
-          meant to be glanced at rather than watched. the soft computer&apos;s
+          meant to be glanced at rather than watched. The soft computer&apos;s
           10.3&Prime; Waveshare panel runs exactly this tradeoff — full
           refreshes between corpora to stay legible, partial refreshes within a
           generation to stay quiet.

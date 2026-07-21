@@ -67,8 +67,8 @@ export default function CapacitiveTouchMatrixDemo() {
           />
         ))}
       </div>
-      <p className="matrix-readout">{active.size} pad{active.size === 1 ? '' : 's'} touched</p>
-      <p className="hint">drag across the pads — each one reports independently, like a real matrix scan</p>
+      <p className="matrix-readout">{active.size} Pad{active.size === 1 ? '' : 's'} touched</p>
+      <p className="hint">Drag across the pads — each one reports independently, like a real matrix scan</p>
 
       <style>{`
         .matrix-demo { text-align: center; }

@@ -5,10 +5,10 @@ import gsap from 'gsap';
 import { prefersReducedMotion } from '@/lib/spring';
 
 const PHRASES = [
-  'the gap keeps',
-  'fibers relax',
-  'a soft yes',
-  'press again',
+  'The gap keeps',
+  'Fibers relax',
+  'A soft yes',
+  'Press again',
 ];
 
 export default function EinkRefreshDemo() {
@@ -63,8 +63,8 @@ export default function EinkRefreshDemo() {
         <button className="pill outline" onClick={() => refresh(true)} disabled={refreshing}>full refresh</button>
       </div>
       <p className="hint">
-        partial refresh is fast but can leave a faint ghost of the old text.
-        full refresh flashes black/white a few times first to clear it.
+        Partial refresh is fast but can leave a faint ghost of the old text.
+        Full refresh flashes black/white a few times first to clear it.
       </p>
 
       <style>{`

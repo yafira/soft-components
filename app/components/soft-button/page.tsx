@@ -5,7 +5,7 @@ import LazyFeltButtonCutaway from '@/components/LazyFeltButtonCutaway';
 
 export const metadata: Metadata = {
   title: 'soft button — soft components',
-  description: 'a felt button you can press: the physics, the material, the design thinking, and the code.',
+  description: 'A felt button you can press: the physics, the material, the design thinking, and the code.',
 };
 
 export default function SoftButtonPage() {
@@ -15,8 +15,8 @@ export default function SoftButtonPage() {
         <p className="crumb"><Link href="/#library">library</Link> / input</p>
         <h1>soft button</h1>
         <p className="lede">
-          a dome of felt over a conductive pad. the gentlest possible way to say
-          &ldquo;yes&rdquo; to a circuit. press it below — and tune how soft it feels.
+          A dome of felt over a conductive pad. The gentlest possible way to say
+          &ldquo;yes&rdquo; to a circuit. Press it below — and tune how soft it feels.
         </p>
       </header>
 
@@ -28,11 +28,11 @@ export default function SoftButtonPage() {
       <section aria-labelledby="inside-h">
         <h2 id="inside-h">what happens inside</h2>
         <p>
-          a soft button is a sandwich. felt on top, an air gap in the middle,
-          conductive fabric below. at rest the gap keeps the circuit open. press,
+          A soft button is a sandwich. Felt on top, an air gap in the middle,
+          conductive fabric below. At rest the gap keeps the circuit open. Press,
           and the felt carries your fingertip down until the two conductive layers
           touch — the circuit closes, current flows, your microcontroller sees a
-          HIGH. let go, and the felt&apos;s fibers push everything back apart.
+          HIGH. Let go, and the felt&apos;s fibers push everything back apart.
         </p>
         <div className="panel">
           <LazyFeltButtonCutaway />
@@ -42,9 +42,9 @@ export default function SoftButtonPage() {
       <section aria-labelledby="physics-h">
         <h2 id="physics-h">the physics (and the code)</h2>
         <p>
-          the on-screen squash isn&apos;t an easing curve. it&apos;s a simulation:
+          The on-screen squash isn&apos;t an easing curve. It&apos;s a simulation:
           the button&apos;s scale is a mass on a damped spring, integrated every
-          frame. this page runs on <a href="https://motion.dev">Motion</a>&apos;s
+          frame. This page runs on <a href="https://motion.dev">motion</a>&apos;s
           spring engine rather than a hand-rolled loop — same underlying math,
           but tuned and battle-tested:
         </p>
@@ -56,7 +56,7 @@ animate(
   { type: "spring", stiffness: 140, damping: 14 }
 );`}</code></pre>
         <p>
-          underneath, it&apos;s the same integration a hand-rolled version would
+          Underneath, it&apos;s the same integration a hand-rolled version would
           do — displacement, spring force, damping force, velocity, position,
           every frame — but Motion adds things worth not reinventing: velocity
           carries over correctly when you retarget mid-motion (press again
@@ -64,23 +64,23 @@ animate(
           spring settles rather than running an idle rAF loop forever.
         </p>
         <p>
-          the character still lives in the <strong>damping ratio</strong> —
-          damping / (2 · √(stiffness · mass)). at 1.0 the button settles with no
-          bounce (rubbery, dead). below 1.0 it overshoots and oscillates. felt
+          The character still lives in the <strong>damping ratio</strong> —
+          damping / (2 · √(stiffness · mass)). At 1.0 the button settles with no
+          bounce (rubbery, dead). Below 1.0 it overshoots and oscillates. Felt
           wants asymmetry: a yielding, over-damped press (fibers compress
           gradually, they don&apos;t click) and a lazily under-damped release,
-          around 0.8–0.9 — one gentle overshoot, then rest. fibers relax; they
-          don&apos;t ping. the knobs above are wired directly to Motion&apos;s
+          around 0.8–0.9 — one gentle overshoot, then rest. Fibers relax; they
+          don&apos;t ping. The knobs above are wired directly to Motion&apos;s
           parameters, so you&apos;re tuning the real thing.
         </p>
         <p>
-          squash and stretch are derived from each other, not animated
+          Squash and stretch are derived from each other, not animated
           separately — when y compresses, x widens, like a material conserving
-          volume. that single constraint is most of why it reads as
+          volume. That single constraint is most of why it reads as
           &ldquo;soft.&rdquo;
         </p>
         <details className="deep-dive">
-          <summary>see the raw integration Motion is doing for you</summary>
+          <summary>See the raw integration Motion is doing for you</summary>
           <pre><code>{`const displacement = value - target;
 const springForce  = -stiffness * displacement;
 const dampingForce = -damping * velocity;
@@ -94,18 +94,18 @@ value    += velocity * dt;`}</code></pre>
       <section aria-labelledby="material-h">
         <h2 id="material-h">the material</h2>
         <p>
-          wool felt is a nonwoven: fibers tangled in every direction, held by
-          friction rather than structure. that&apos;s why the first millimeter
+          Wool felt is a nonwoven: fibers tangled in every direction, held by
+          friction rather than structure. That&apos;s why the first millimeter
           of a press is easy and it firms up as fibers pack together —
-          compression resistance rises with depth. it&apos;s also why felt
-          recovers slowly and quietly instead of snapping back. a good digital
+          compression resistance rises with depth. It&apos;s also why felt
+          recovers slowly and quietly instead of snapping back. A good digital
           felt button borrows both behaviors: progressive stiffness on the way
           down, damped patience on the way up.
         </p>
         <p>
-          in fabrication: 3–5mm wool felt over conductive fabric (or conductive
+          In fabrication: 3–5mm wool felt over conductive fabric (or conductive
           thread stitched in a spiral), with a foam or felt spacer ring creating
-          the air gap. the spacer&apos;s thickness sets the actuation force —
+          the air gap. The spacer&apos;s thickness sets the actuation force —
           thicker gap, firmer press.
         </p>
       </section>
@@ -113,11 +113,11 @@ value    += velocity * dt;`}</code></pre>
       <section aria-labelledby="context-h">
         <h2 id="context-h">when to use it</h2>
         <p>
-          anywhere a click would be too loud. soft buttons suit calm technology:
+          Anywhere a click would be too loud. Soft buttons suit calm technology:
           bedside objects, wearables, textile interfaces, anything meant to be
-          touched slowly. they trade precision for warmth — no tactile click
+          touched slowly. They trade precision for warmth — no tactile click
           means you confirm the press some other way (a haptic pulse, a light,
-          a change on screen). on the soft computer, each of the four felt
+          a change on screen). On the soft computer, each of the four felt
           buttons has its own haptic motor with a distinct signature, so your
           fingertip learns which corpus it pressed without looking.
         </p>
@@ -126,8 +126,8 @@ value    += velocity * dt;`}</code></pre>
       <section aria-labelledby="code-h">
         <h2 id="code-h">take the code</h2>
         <p>
-          the FeltButtonDemo component powering this page, ready to drop into a
-          React project. mit licensed, like everything here.
+          The FeltButtonDemo component powering this page, ready to drop into a
+          React project. MIT licensed, like everything here.
         </p>
         <pre><code>{`import { animate } from "motion";
 

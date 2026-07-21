@@ -4,7 +4,7 @@ import LazyPressureSensorDemo from '@/components/LazyPressureSensorDemo';
 
 export const metadata: Metadata = {
   title: 'pressure sensor — soft components',
-  description: 'a velostat pressure sensor: squeeze harder, resistance falls, force becomes an analog signal.',
+  description: 'A velostat pressure sensor: squeeze harder, resistance falls, force becomes an analog signal.',
 };
 
 export default function PressureSensorPage() {
@@ -14,8 +14,8 @@ export default function PressureSensorPage() {
         <p className="crumb"><Link href="/#library">library</Link> / input</p>
         <h1>pressure sensor</h1>
         <p className="lede">
-          velostat between two layers of conductive fabric. squeeze harder and
-          resistance drops. press and hold the stack below — the longer you
+          Velostat between two layers of conductive fabric. Squeeze harder and
+          resistance drops. Press and hold the stack below — the longer you
           hold, the harder you&apos;re &ldquo;squeezing.&rdquo;
         </p>
       </header>
@@ -28,21 +28,21 @@ export default function PressureSensorPage() {
       <section aria-labelledby="how-h">
         <h2 id="how-h">how it works</h2>
         <p>
-          velostat is a polymer film loaded with carbon particles. relaxed, the
+          Velostat is a polymer film loaded with carbon particles. Relaxed, the
           particles sit apart and current struggles across — high resistance.
-          squeeze, and particles crowd into contact, opening more conductive
-          paths — resistance falls, roughly with the inverse of force. put the
+          Squeeze, and particles crowd into contact, opening more conductive
+          paths — resistance falls, roughly with the inverse of force. Put the
           sensor in a voltage divider and one analog pin reads how hard
           you&apos;re pressing, not just whether you are.
         </p>
         <p>
-          the response is nonlinear and it drifts — velostat creeps under
-          sustained load and remembers being folded. calibrate per sensor,
+          The response is nonlinear and it drifts — velostat creeps under
+          sustained load and remembers being folded. Calibrate per sensor,
           smooth the reading, and design for gestures (&ldquo;light / firm /
           squeeze&rdquo;) rather than newtons.
         </p>
         <p>
-          this demo runs on <a href="https://gsap.com">GSAP</a> rather than a
+          This demo runs on <a href="https://gsap.com">GSAP</a> rather than a
           position spring: force builds on a quick ease-in while held, then
           decays on a slower ease-out after release — asymmetric timing tuned
           to feel like load building up and then a stack of fabric settling,
@@ -53,9 +53,9 @@ export default function PressureSensorPage() {
       <section aria-labelledby="context-h">
         <h2 id="context-h">when to use it</h2>
         <p>
-          anywhere force is the message: a plush object that responds to how
+          Anywhere force is the message: a plush object that responds to how
           it&apos;s hugged, a pressure map under a sock, expressive velocity
-          for a fabric instrument. it&apos;s the workhorse of soft circuits —
+          for a fabric instrument. It&apos;s the workhorse of soft circuits —
           cheap, cuttable with scissors, sewable into almost anything.
         </p>
         <p className="foot-nav">

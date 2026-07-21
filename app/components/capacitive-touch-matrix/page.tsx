@@ -4,7 +4,7 @@ import LazyCapacitiveTouchMatrixDemo from '@/components/LazyCapacitiveTouchMatri
 
 export const metadata: Metadata = {
   title: 'capacitive touch matrix — soft components',
-  description: 'a grid of copper-tape pads that senses multiple touches at once, like a fabric trackpad.',
+  description: 'A grid of copper-tape pads that senses multiple touches at once, like a fabric trackpad.',
 };
 
 export default function CapacitiveTouchMatrixPage() {
@@ -14,8 +14,8 @@ export default function CapacitiveTouchMatrixPage() {
         <p className="crumb"><Link href="/#library">library</Link> / input</p>
         <h1>capacitive touch matrix</h1>
         <p className="lede">
-          a grid of copper-tape or conductive-fabric pads, each sensing touch
-          independently. drag across the grid below — every pad you cross
+          A grid of copper-tape or conductive-fabric pads, each sensing touch
+          independently. Drag across the grid below — every pad you cross
           lights up on its own.
         </p>
       </header>
@@ -28,15 +28,15 @@ export default function CapacitiveTouchMatrixPage() {
       <section aria-labelledby="how-h">
         <h2 id="how-h">how it works</h2>
         <p>
-          each pad is one plate of a capacitor; your finger, grounded through
-          your body, is the other. touching a pad changes its capacitance, and
+          Each pad is one plate of a capacitor; your finger, grounded through
+          your body, is the other. Touching a pad changes its capacitance, and
           a microcontroller measuring charge time on each pad&apos;s pin
-          notices the shift. scan every pad in a fast loop and you get
+          notices the shift. Scan every pad in a fast loop and you get
           independent touch detection across the whole grid — a fabric
           trackpad, in effect, without a single moving part.
         </p>
         <p>
-          real capacitive sensing needs some debouncing and a baseline
+          Real capacitive sensing needs some debouncing and a baseline
           calibration (fabric capacitance drifts with humidity and how the
           textile is worn), which this demo skips for clarity — but the core
           idea, one measurement per pad, independent of its neighbors, is
@@ -47,9 +47,9 @@ export default function CapacitiveTouchMatrixPage() {
       <section aria-labelledby="context-h">
         <h2 id="context-h">when to use it</h2>
         <p>
-          multi-point gesture surfaces on soft objects: a swipe-to-scroll
+          Multi-point gesture surfaces on soft objects: a swipe-to-scroll
           panel on a sleeve, a grid that reads which finger pressed where, a
-          textile instrument with several simultaneous keys. compared to a
+          textile instrument with several simultaneous keys. Compared to a
           single potentiometer, a matrix trades simplicity for genuinely
           parallel input — worth it only when more than one touch actually
           matters to the design.

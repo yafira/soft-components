@@ -17,8 +17,10 @@
   --card: #ffffff;
   --line: #e8e2f2;
 
-  /* type */
-  --font-display: 'Pixelify Sans', monospace;
+  /* type: Jersey 25 is a free Google Font by Sarah Cadigan-Fried (Soft
+     Type collection) — designed for machine knitting, pixel-block
+     construction. No license needed. IBM Plex Mono stays the body/UI face. */
+  --font-display: 'Jersey 25', 'Pixelify Sans', monospace;
   --font-body: 'IBM Plex Mono', monospace;
 
   /* shape */
@@ -43,6 +45,9 @@ h1, h2, h3 {
   font-weight: 400;
   line-height: 1.2;
   margin: 0 0 0.5rem;
+}
+h1, h2, h3 {
+  text-transform: lowercase;
 }
 
 h1 { font-size: 2.6rem; }

@@ -32,7 +32,7 @@ export default function LibraryGrid() {
     const state = btnStateRef.current;
     if (!felt || !state) return;
     const reduced = prefersReducedMotion();
-    state.textContent = 'circuit closed — signal!';
+    state.textContent = 'Circuit closed — signal!';
     animate(
       felt,
       { y: 30, scaleX: 1.08, scaleY: 0.55 },
@@ -44,7 +44,7 @@ export default function LibraryGrid() {
           { y: 0, scaleX: 1, scaleY: 1 },
           { type: 'spring', stiffness: 170, damping: 14, duration: reduced ? 0 : undefined }
         );
-        state.textContent = 'circuit open';
+        state.textContent = 'Circuit open';
       }, reduced ? 0 : 320);
     });
   };
@@ -120,11 +120,39 @@ export default function LibraryGrid() {
     setTimeout(() => path.setAttribute('d', 'M 30 60 Q 110 60 190 60'), reduced ? 0 : 480);
   };
 
+  const gridAudioCtxRef = useRef<AudioContext | null>(null);
+  const playGridBuzz = () => {
+    try {
+      if (!gridAudioCtxRef.current) {
+        const Ctor = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+        if (!Ctor) return;
+        gridAudioCtxRef.current = new Ctor();
+      }
+      const ctx = gridAudioCtxRef.current;
+      if (ctx.state === 'suspended') ctx.resume();
+      const now = ctx.currentTime;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(160, now);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.gain.linearRampToValueAtTime(0.35, now + 0.05);
+      gain.gain.linearRampToValueAtTime(0.0001, now + 0.45);
+      osc.start(now);
+      osc.stop(now + 0.5);
+    } catch {
+      // silently skip audio if unsupported — the visual still plays
+    }
+  };
+
   const playHaptic = () => {
     const motor = motorRef.current;
     const ring = ringRef.current;
     if (!motor || !ring) return;
     const reduced = prefersReducedMotion();
+    playGridBuzz();
     animate(motor, { scale: 1.2 }, { type: 'spring', stiffness: 250, damping: 12, duration: reduced ? 0 : undefined });
     ring.setAttribute('r', '34');
     ring.setAttribute('opacity', '0.7');
@@ -174,15 +202,15 @@ export default function LibraryGrid() {
               <title>felt button demo</title>
               <g ref={feltRef} style={{ transformBox: 'view-box', transformOrigin: '110px 61px' }}>
                 <rect x="60" y="32" width="100" height="58" rx="18" className="fill-blush stroke-blush" />
-                <text x="110" y="66" textAnchor="middle" className="label-blush">felt</text>
+                <text x="110" y="66" textAnchor="middle" className="label-blush">Felt</text>
               </g>
               <rect x="72" y="102" width="76" height="11" rx="4" className="fill-butter stroke-butter" />
-              <text ref={btnStateRef} x="110" y="138" textAnchor="middle" className="state">circuit open</text>
+              <text ref={btnStateRef} x="110" y="138" textAnchor="middle" className="state">Circuit open</text>
             </svg>
           </button>
           <div className="card-body">
             <h2><Link href="/components/soft-button">soft button</Link></h2>
-            <p>a felt dome over a conductive pad. the gentlest possible digital input.</p>
+            <p>A felt dome over a conductive pad. The gentlest possible digital input.</p>
             <Link className="more" href="/components/soft-button">how it works →</Link>
           </div>
         </article>
@@ -194,12 +222,12 @@ export default function LibraryGrid() {
               <rect x="30" y="62" width="160" height="18" rx="9" className="fill-matcha stroke-matcha" />
               <circle ref={wiperRef} cx="52" cy="71" r="14" fill="#fdfbf7" stroke="#4f9c74" strokeWidth={2} />
               <text ref={potValueRef} x="110" y="118" textAnchor="middle" className="pot-value mono">0.14</text>
-              <text x="110" y="138" textAnchor="middle" className="state">position → value</text>
+              <text x="110" y="138" textAnchor="middle" className="state">Position → value</text>
             </svg>
           </button>
           <div className="card-body">
             <h2><Link href="/components/soft-potentiometer">soft potentiometer</Link></h2>
-            <p>a wiper gliding along conductive fabric. where you touch becomes a number.</p>
+            <p>A wiper gliding along conductive fabric. Where you touch becomes a number.</p>
             <Link className="more" href="/components/soft-potentiometer">how it works →</Link>
           </div>
         </article>
@@ -213,12 +241,12 @@ export default function LibraryGrid() {
                     style={{ transformBox: 'view-box', transformOrigin: '110px 68px' }} />
               <rect x="58" y="84" width="104" height="16" rx="5" fill="#cdc1ee" stroke="#8a77c4" />
               <text ref={pressValueRef} x="110" y="122" textAnchor="middle" className="press-value mono">R: high</text>
-              <text x="110" y="140" textAnchor="middle" className="state">squeeze → signal</text>
+              <text x="110" y="140" textAnchor="middle" className="state">Squeeze → signal</text>
             </svg>
           </button>
           <div className="card-body">
             <h2><Link href="/components/pressure-sensor">pressure sensor</Link></h2>
-            <p>velostat between conductive fabric. squeeze harder, resistance falls.</p>
+            <p>Velostat between conductive fabric. Squeeze harder, resistance falls.</p>
             <Link className="more" href="/components/pressure-sensor">how it works →</Link>
           </div>
         </article>
@@ -231,12 +259,12 @@ export default function LibraryGrid() {
                     fill="none" stroke="var(--wisteria-deep)" strokeWidth={3} strokeLinecap="round"
                     transform="translate(50, 15)" />
               <text x="110" y="118" textAnchor="middle" className="mono">R rises</text>
-              <text x="110" y="138" textAnchor="middle" className="state">stretch → resistance</text>
+              <text x="110" y="138" textAnchor="middle" className="state">Stretch → resistance</text>
             </svg>
           </button>
           <div className="card-body">
             <h2><Link href="/components/knit-stretch-sensor">knit stretch sensor</Link></h2>
-            <p>conductive knit that reads how far it&apos;s been pulled.</p>
+            <p>Conductive knit that reads how far it&apos;s been pulled.</p>
             <Link className="more" href="/components/knit-stretch-sensor">how it works →</Link>
           </div>
         </article>
@@ -254,13 +282,13 @@ export default function LibraryGrid() {
                   fill="var(--card)" stroke="var(--wisteria-deep)" strokeWidth={1.2}
                 />
               ))}
-              <text x="110" y="118" textAnchor="middle" className="mono">multi-touch</text>
-              <text x="110" y="138" textAnchor="middle" className="state">grid → independent pads</text>
+              <text x="110" y="118" textAnchor="middle" className="mono">Multi-touch</text>
+              <text x="110" y="138" textAnchor="middle" className="state">Grid → independent pads</text>
             </svg>
           </button>
           <div className="card-body">
             <h2><Link href="/components/capacitive-touch-matrix">capacitive touch matrix</Link></h2>
-            <p>copper-tape pads that sense multiple touches at once.</p>
+            <p>Copper-tape pads that sense multiple touches at once.</p>
             <Link className="more" href="/components/capacitive-touch-matrix">how it works →</Link>
           </div>
         </article>
@@ -273,12 +301,12 @@ export default function LibraryGrid() {
                     stroke="var(--matcha-deep)" strokeWidth={4} strokeLinecap="round"
                     transform="translate(0, 15)" />
               <text x="110" y="118" textAnchor="middle" className="mono">R rises</text>
-              <text x="110" y="138" textAnchor="middle" className="state">bend → resistance</text>
+              <text x="110" y="138" textAnchor="middle" className="state">Bend → resistance</text>
             </svg>
           </button>
           <div className="card-body">
             <h2><Link href="/components/fabric-bend-sensor">fabric bend sensor</Link></h2>
-            <p>resistive ink that reads how far a joint has bent.</p>
+            <p>Resistive ink that reads how far a joint has bent.</p>
             <Link className="more" href="/components/fabric-bend-sensor">how it works →</Link>
           </div>
         </article>
@@ -294,13 +322,13 @@ export default function LibraryGrid() {
               <title>haptic motor demo</title>
               <circle ref={ringRef} cx="110" cy="60" r="14" fill="none" stroke="var(--wisteria-deep)" strokeWidth={2} opacity={0} />
               <circle ref={motorRef} cx="110" cy="60" r="16" fill="var(--wisteria)" stroke="var(--wisteria-deep)" strokeWidth={1.5} />
-              <text x="110" y="118" textAnchor="middle" className="mono">buzz</text>
-              <text x="110" y="138" textAnchor="middle" className="state">press → felt confirms</text>
+              <text x="110" y="118" textAnchor="middle" className="mono">Buzz</text>
+              <text x="110" y="138" textAnchor="middle" className="state">Press → felt confirms</text>
             </svg>
           </button>
           <div className="card-body">
             <h2><Link href="/components/haptic-motor">haptic motor</Link></h2>
-            <p>a felt button that talks back with its own vibration signature.</p>
+            <p>A felt button that talks back with its own vibration signature.</p>
             <Link className="more" href="/components/haptic-motor">how it works →</Link>
           </div>
         </article>
@@ -310,13 +338,13 @@ export default function LibraryGrid() {
             <svg viewBox="0 0 220 150" role="img" className="thumb">
               <title>thermochromic reveal demo</title>
               <rect ref={thermoPatchRef} x="65" y="28" width="90" height="60" rx="10" fill="#cdc1ee" stroke="var(--line)" />
-              <text x="110" y="118" textAnchor="middle" className="mono">warms · fades</text>
-              <text x="110" y="138" textAnchor="middle" className="state">heat → color shift</text>
+              <text x="110" y="118" textAnchor="middle" className="mono">Warms · fades</text>
+              <text x="110" y="138" textAnchor="middle" className="state">Heat → color shift</text>
             </svg>
           </button>
           <div className="card-body">
             <h2><Link href="/components/thermochromic-reveal">thermochromic reveal</Link></h2>
-            <p>a fabric patch that changes color as conductive thread warms it.</p>
+            <p>A fabric patch that changes color as conductive thread warms it.</p>
             <Link className="more" href="/components/thermochromic-reveal">how it works →</Link>
           </div>
         </article>
@@ -331,13 +359,13 @@ export default function LibraryGrid() {
             <svg viewBox="0 0 220 150" role="img" className="thumb">
               <title>e-ink refresh demo</title>
               <rect ref={einkPanelRef} x="50" y="30" width="120" height="60" rx="8" fill="#f4f0fb" stroke="var(--line)" />
-              <text x="110" y="118" textAnchor="middle" className="mono">flash · settle</text>
-              <text x="110" y="138" textAnchor="middle" className="state">refresh → clears ghosting</text>
+              <text x="110" y="118" textAnchor="middle" className="mono">Flash · settle</text>
+              <text x="110" y="138" textAnchor="middle" className="state">Refresh → clears ghosting</text>
             </svg>
           </button>
           <div className="card-body">
             <h2><Link href="/components/eink-refresh">e-ink refresh</Link></h2>
-            <p>the flash-to-black cycle that clears a slow display before it settles.</p>
+            <p>The flash-to-black cycle that clears a slow display before it settles.</p>
             <Link className="more" href="/components/eink-refresh">how it works →</Link>
           </div>
         </article>

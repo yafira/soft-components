@@ -84,22 +84,22 @@ export default function PressureSensorDemo() {
           <desc>a three-layer stack that compresses under pressure while a resistance readout falls.</desc>
           <g ref={topRef}>
             <rect x="160" y="30" width="240" height="30" rx="9" fill="var(--wisteria)" stroke="var(--wisteria-deep)" />
-            <text x="280" y="49" textAnchor="middle" className="st-label" fill="var(--wisteria-deep)">conductive fabric</text>
+            <text x="280" y="49" textAnchor="middle" className="st-label" fill="var(--wisteria-deep)">Conductive fabric</text>
           </g>
           <g ref={veloRef} style={{ transformBox: 'view-box', transformOrigin: '280px 87px' }}>
             <rect x="160" y="72" width="240" height="30" rx="9" fill="#c9c4bb" stroke="#8b857a" />
-            <text x="280" y="91" textAnchor="middle" className="st-label" fill="#5c574e">velostat</text>
+            <text x="280" y="91" textAnchor="middle" className="st-label" fill="#5c574e">Velostat</text>
           </g>
           <g ref={bottomRef}>
             <rect x="160" y="114" width="240" height="30" rx="9" fill="var(--wisteria)" stroke="var(--wisteria-deep)" />
-            <text x="280" y="133" textAnchor="middle" className="st-label" fill="var(--wisteria-deep)">conductive fabric</text>
+            <text x="280" y="133" textAnchor="middle" className="st-label" fill="var(--wisteria-deep)">Conductive fabric</text>
           </g>
           <text x="280" y="185" textAnchor="middle" className="st-readout">{readout}</text>
           <rect x="130" y="200" width="300" height="8" rx="4" fill="var(--paper)" stroke="var(--line)" />
           <rect x="130" y="200" width={barWidth} height="8" rx="4" fill="var(--wisteria-deep)" />
         </svg>
       </button>
-      <p className="hint">press and hold — works with space or enter too</p>
+      <p className="hint">Press and hold — works with space or enter too</p>
 
       <style>{`
         .stack-btn { all: unset; cursor: pointer; display: block; width: 100%; -webkit-tap-highlight-color: transparent; }

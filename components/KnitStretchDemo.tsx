@@ -130,7 +130,7 @@ export default function KnitStretchDemo() {
         />
         <text x="200" y="105" textAnchor="middle" className="knit-readout">R ≈ {resistance.toFixed(1)} kΩ</text>
       </svg>
-      <p className="hint">drag the handle to stretch the swatch — release to relax</p>
+      <p className="hint">Drag the handle to stretch the swatch — release to relax</p>
 
       <style>{`
         .knit-demo { text-align: center; }

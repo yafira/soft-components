@@ -118,7 +118,7 @@ export default function FabricBendDemo() {
         />
         <text x="200" y="105" textAnchor="middle" className="bend-readout">R ≈ {resistance.toFixed(1)} kΩ</text>
       </svg>
-      <p className="hint">drag the handle up or down to bend the strip — release to flatten</p>
+      <p className="hint">Drag the handle up or down to bend the strip — release to flatten</p>
 
       <style>{`
         .bend-demo { text-align: center; }

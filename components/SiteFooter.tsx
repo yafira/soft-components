@@ -3,8 +3,8 @@ export default function SiteFooter() {
     <footer className="site-footer">
       <div className="wrap">
         <p>
-          a poetronics project by{' '}
-          <a href="https://electrocute.io">electrocute lab</a> · electronics
+          A poetronics project by{' '}
+          <a href="https://electrocute.io">Electrocute Lab</a> · Electronics
           with the sensibility of a poem
         </p>
       </div>

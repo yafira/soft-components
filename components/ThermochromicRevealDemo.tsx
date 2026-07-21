@@ -66,8 +66,8 @@ export default function ThermochromicRevealDemo() {
           <span className="patch-label">{heating ? 'heating' : 'press to heat'}</span>
         </div>
       </button>
-      <p className="thermo-readout">temperature: {(temp * 100).toFixed(0)}%</p>
-      <p className="hint">conductive thread heats the patch; thermochromic ink shifts color as it warms, then fades slowly as it cools</p>
+      <p className="thermo-readout">Temperature: {(temp * 100).toFixed(0)}%</p>
+      <p className="hint">Conductive thread heats the patch; thermochromic ink shifts color as it warms, then fades slowly as it cools</p>
 
       <style>{`
         .thermo-demo { text-align: center; }

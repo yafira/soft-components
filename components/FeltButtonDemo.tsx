@@ -92,7 +92,7 @@ export default function FeltButtonDemo() {
                  onChange={(e) => setDepth(parseFloat(e.target.value))} />
         </label>
         <p className="readout">
-          damping ratio <em>{ratio.toFixed(2)}</em> · <span>{character}</span>
+          Damping ratio <em>{ratio.toFixed(2)}</em> · <span>{character}</span>
         </p>
         <p className="presses" aria-live="polite">
           {presses} {presses === 1 ? 'press' : 'presses'}

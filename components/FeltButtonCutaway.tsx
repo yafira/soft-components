@@ -7,7 +7,7 @@ import { prefersReducedMotion } from '@/lib/spring';
 export default function FeltButtonCutaway() {
   const feltRef = useRef<SVGGElement>(null);
   const padRectRef = useRef<SVGRectElement>(null);
-  const [state, setState] = useState('resting — circuit open');
+  const [state, setState] = useState('Resting — circuit open');
 
   const play = () => {
     const felt = feltRef.current;
@@ -15,17 +15,17 @@ export default function FeltButtonCutaway() {
     if (!felt || !pad) return;
     const reduced = prefersReducedMotion();
 
-    setState('compressing…');
+    setState('Compressing…');
     animate(
       felt,
       { y: 58, scaleX: 1.06, scaleY: 0.66 },
       { type: 'spring', stiffness: 120, damping: 15, duration: reduced ? 0 : undefined }
     ).then(() => {
       pad.setAttribute('fill', '#f2c94c');
-      setState('pressed — layers touching, circuit closed');
+      setState('Pressed — layers touching, circuit closed');
       setTimeout(() => {
         pad.setAttribute('fill', 'var(--butter)');
-        setState('resting — circuit open');
+        setState('Resting — circuit open');
         animate(
           felt,
           { y: 0, scaleX: 1, scaleY: 1 },
@@ -42,19 +42,19 @@ export default function FeltButtonCutaway() {
         <desc>the felt top compresses through an air gap until conductive layers touch and close the circuit.</desc>
         <g ref={feltRef} style={{ transformBox: 'view-box', transformOrigin: '280px 57px' }}>
           <rect x="150" y="34" width="260" height="46" rx="14" fill="var(--blush)" stroke="var(--blush-deep)" />
-          <text x="280" y="62" textAnchor="middle" className="cut-label" fill="var(--blush-deep)">felt top — springy fibers</text>
+          <text x="280" y="62" textAnchor="middle" className="cut-label" fill="var(--blush-deep)">Felt top — springy fibers</text>
         </g>
         <g>
           <rect x="170" y="96" width="220" height="22" rx="6" fill="var(--paper)" stroke="var(--line)" strokeDasharray="5 5" />
-          <text x="430" y="111" className="cut-side">air gap</text>
+          <text x="430" y="111" className="cut-side">Air gap</text>
         </g>
         <g>
           <rect ref={padRectRef} x="170" y="130" width="220" height="26" rx="6" fill="var(--butter)" stroke="var(--butter-deep)" />
-          <text x="280" y="147" textAnchor="middle" className="cut-label" fill="var(--butter-deep)">conductive fabric</text>
+          <text x="280" y="147" textAnchor="middle" className="cut-label" fill="var(--butter-deep)">Conductive fabric</text>
         </g>
         <g>
           <rect x="150" y="168" width="260" height="20" rx="6" fill="var(--wisteria)" stroke="var(--wisteria-deep)" />
-          <text x="280" y="182" textAnchor="middle" className="cut-label small" fill="var(--wisteria-deep)">base layer + trace to pin</text>
+          <text x="280" y="182" textAnchor="middle" className="cut-label small" fill="var(--wisteria-deep)">Base layer + trace to pin</text>
         </g>
         <text x="280" y="222" textAnchor="middle" className="cut-state">{state}</text>
       </svg>

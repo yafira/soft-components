@@ -6,11 +6,11 @@ export default function HomePage() {
       <section className="hero wrap">
         <h1>a digital library of<br />soft electronic components</h1>
         <p className="lede">
-          buttons made of felt. potentiometers made of fabric. sensors you can squeeze.
-          each entry shows the component in motion, then explains the physics,
+          Buttons made of felt. Potentiometers made of fabric. Sensors you can squeeze.
+          Each entry shows the component in motion, then explains the physics,
           the engineering, and the design thinking behind it.
         </p>
-        <p className="hint" aria-hidden="true">↓ tap a component to press, slide, or squeeze it</p>
+        <p className="hint" aria-hidden="true">↓ Tap a component to press, slide, or squeeze it</p>
       </section>
 
       <LazyLibraryGrid />

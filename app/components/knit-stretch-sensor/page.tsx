@@ -4,7 +4,7 @@ import LazyKnitStretchDemo from '@/components/LazyKnitStretchDemo';
 
 export const metadata: Metadata = {
   title: 'knit stretch sensor — soft components',
-  description: 'a conductive knit swatch: stretch it and resistance rises as the loops pull apart.',
+  description: 'A conductive knit swatch: stretch it and resistance rises as the loops pull apart.',
 };
 
 export default function KnitStretchPage() {
@@ -14,8 +14,8 @@ export default function KnitStretchPage() {
         <p className="crumb"><Link href="/#library">library</Link> / input</p>
         <h1>knit stretch sensor</h1>
         <p className="lede">
-          conductive yarn, knit into a swatch. pull it and the loops spread
-          apart, resistance climbing as they go. drag the handle below.
+          Conductive yarn, knit into a swatch. Pull it and the loops spread
+          apart, resistance climbing as they go. Drag the handle below.
         </p>
       </header>
 
@@ -27,17 +27,17 @@ export default function KnitStretchPage() {
       <section aria-labelledby="how-h">
         <h2 id="how-h">how it works</h2>
         <p>
-          knit a swatch with yarn plied from stainless steel or silver-coated
+          Knit a swatch with yarn plied from stainless steel or silver-coated
           conductive fiber, and every loop touches its neighbors — a dense mesh
-          of tiny contact points conducting current across the fabric. stretch
+          of tiny contact points conducting current across the fabric. Stretch
           the swatch and the loops elongate and pull apart, contact points
-          breaking one by one. fewer contacts means a longer, thinner path for
+          breaking one by one. Fewer contacts means a longer, thinner path for
           current, so resistance rises with stretch — the opposite direction
-          from the pressure sensor, where squeezing closes contacts. same
+          from the pressure sensor, where squeezing closes contacts. Same
           principle, opposite sign.
         </p>
         <p>
-          this is the one place in the library where machine-knitting
+          This is the one place in the library where machine-knitting
           knowledge directly shapes the sensor&apos;s behavior: a weft-knit
           swatch (like the ones off a Brother KH-930) stretches far more in
           the course direction than the wale direction, so orientation on the
@@ -49,9 +49,9 @@ export default function KnitStretchPage() {
       <section aria-labelledby="context-h">
         <h2 id="context-h">when to use it</h2>
         <p>
-          garment-integrated gesture input — a stretch at the elbow, a cuff
+          Garment-integrated gesture input — a stretch at the elbow, a cuff
           that senses how far a wrist has bent, a hem that reads how snug it&apos;s
-          pulled. like the pressure sensor, expect drift and hysteresis: knit
+          pulled. Like the pressure sensor, expect drift and hysteresis: knit
           doesn&apos;t fully recover its resting shape instantly, so calibrate
           per-wear rather than assuming a fixed zero point.
         </p>

@@ -1,11 +1,12 @@
 import Link from 'next/link';
+import SoftChipMark from './SoftChipMark';
 
 export default function SiteHeader() {
   return (
     <header className="site-header">
       <div className="wrap header-inner">
-        <Link href="/" className="wordmark" aria-label="soft components home">
-          <span className="stitch" aria-hidden="true" />
+        <Link href="/" className="wordmark" aria-label="Soft Components home">
+          <SoftChipMark size={22} />
           soft components
         </Link>
         <nav>
@@ -27,20 +28,13 @@ export default function SiteHeader() {
         }
         .wordmark {
           font-family: var(--font-display);
+          text-transform: lowercase;
           font-size: 1.25rem;
           color: var(--ink);
           text-decoration: none;
           display: inline-flex;
           align-items: center;
           gap: 0.6rem;
-        }
-        .stitch {
-          width: 14px;
-          height: 14px;
-          border-radius: 50%;
-          background: var(--blush);
-          border: 2px solid var(--blush-deep);
-          display: inline-block;
         }
         nav { display: flex; gap: 1.4rem; }
         nav a { color: var(--ink-soft); text-decoration: none; font-size: 0.9rem; }
