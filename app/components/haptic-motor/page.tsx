@@ -97,7 +97,7 @@ for (let i = 1; i <= samples; i++) {
         section { margin-bottom: 3rem; }
         .panel {
           background: var(--card);
-          border: 1px dashed var(--wisteria-deep);
+          border: 2px dashed var(--wisteria-deep);
           border-radius: var(--radius-lg);
           padding: 1.6rem;
         }

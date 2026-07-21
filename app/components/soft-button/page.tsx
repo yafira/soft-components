@@ -127,7 +127,7 @@ value    += velocity * dt;`}</code></pre>
         <h2 id="code-h">take the code</h2>
         <p>
           The FeltButtonDemo component powering this page, ready to drop into a
-          React project. MIT licensed, like everything here.
+          React project.
         </p>
         <pre><code>{`import { animate } from "motion";
 
@@ -157,7 +157,7 @@ function release(face: HTMLElement, stiffness: number, damping: number) {
 
         .panel {
           background: var(--card);
-          border: 1px dashed var(--wisteria);
+          border: 2px dashed var(--wisteria);
           border-radius: var(--radius-lg);
           padding: 1.6rem;
         }
@@ -174,7 +174,7 @@ function release(face: HTMLElement, stiffness: number, damping: number) {
 
         .deep-dive {
           margin-top: 1rem;
-          border: 1px dashed var(--line);
+          border: 2px dashed var(--line);
           border-radius: var(--radius);
           padding: 0.2rem 1rem 0.9rem;
         }

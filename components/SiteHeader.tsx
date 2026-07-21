@@ -6,7 +6,7 @@ export default function SiteHeader() {
     <header className="site-header">
       <div className="wrap header-inner">
         <Link href="/" className="wordmark" aria-label="Soft Components home">
-          <SoftChipMark size={22} />
+          <SoftChipMark size={28} />
           soft components
         </Link>
         <nav>
@@ -29,7 +29,7 @@ export default function SiteHeader() {
         .wordmark {
           font-family: var(--font-display);
           text-transform: lowercase;
-          font-size: 1.25rem;
+          font-size: 1.55rem;
           color: var(--ink);
           text-decoration: none;
           display: inline-flex;

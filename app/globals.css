@@ -15,7 +15,7 @@
   --butter: #fbe7ae;
   --butter-deep: #c19434;
   --card: #ffffff;
-  --line: #e8e2f2;
+  --line: #ddd0f0;
 
   /* type: Jersey 25 is a free Google Font by Sarah Cadigan-Fried (Soft
      Type collection) — designed for machine knitting, pixel-block
@@ -26,6 +26,7 @@
   /* shape */
   --radius: 14px;
   --radius-lg: 22px;
+  --shadow-pop: 0 10px 28px -10px rgba(138, 119, 196, 0.4);
 }
 
 * { box-sizing: border-box; }
@@ -50,9 +51,9 @@ h1, h2, h3 {
   text-transform: lowercase;
 }
 
-h1 { font-size: 2.6rem; }
-h2 { font-size: 1.6rem; }
-h3 { font-size: 1.2rem; }
+h1 { font-size: clamp(2.6rem, 6vw, 4.4rem); letter-spacing: -0.01em; }
+h2 { font-size: 1.75rem; }
+h3 { font-size: 1.3rem; }
 
 p { margin: 0 0 1.25rem; }
 
@@ -68,7 +69,7 @@ code {
 
 pre {
   background: #f7f4fd;
-  border: 1px solid var(--line);
+  border: 1.5px solid var(--line);
   border-radius: var(--radius);
   padding: 1.1rem 1.3rem;
   overflow-x: auto;
@@ -77,6 +78,18 @@ pre {
 }
 
 pre code { background: none; padding: 0; }
+
+/* bold dashed-pill chrome, reused for category labels, breadcrumbs, ctas */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-display);
+  border: 2px dashed currentColor;
+  border-radius: 999px;
+  padding: 0.3rem 0.95rem;
+  line-height: 1;
+}
 
 .wrap {
   max-width: 880px;
