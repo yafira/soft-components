@@ -6,4 +6,6 @@
   <line x1="22" y1="36" x2="22" y2="42" stroke="#8a77c4" stroke-width="4" stroke-linecap="round"/>
   <line x1="30" y1="36" x2="30" y2="42" stroke="#8a77c4" stroke-width="4" stroke-linecap="round"/>
   <rect x="5" y="8" width="34" height="28" rx="10" fill="#cdc1ee" stroke="#8a77c4" stroke-width="2.5" stroke-dasharray="4.5 3.5"/>
+  <circle cx="22" cy="22" r="5" fill="#f6c8d8" stroke="#c46a8c" stroke-width="1.5"/>
+  <path d="M22.8 19 L20.8 22.3 L22.3 22.3 L21.4 25 L23.8 21.6 L22.4 21.6 Z" fill="#c19434"/>
 </svg>

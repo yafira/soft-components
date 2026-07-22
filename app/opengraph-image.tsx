@@ -110,13 +110,20 @@ export default async function Image() {
         >
           <div
             style={{
+              display: "flex",
               width: 34,
               height: 34,
               borderRadius: 17,
               background: "#f6c8d8",
               border: "6px solid #c46a8c",
+              alignItems: "center",
+              justifyContent: "center",
             }}
-          />
+          >
+            <svg width="14" height="18" viewBox="0 0 16 20">
+              <path d="M9 0 L3 9 L6.5 9 L5 20 L13 7 L9 7 Z" fill="#c19434" />
+            </svg>
+          </div>
         </div>
       </div>
 
