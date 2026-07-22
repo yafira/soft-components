@@ -7,9 +7,21 @@ context, and copy-paste code.
 
 part of my ongoing practice in soft electronics at
 [electrocute lab](https://electrocute.io). the broader aesthetic is
-*poetronics*: electronics with the sensibility of a poem.
+_poetronics_: electronics with the sensibility of a poem.
 
 ## the library
+<table>
+  <tr>
+    <td><img src="public/screenshots/sc1.gif" width="300"></td>
+    <td><img src="public/screenshots/sc2.gif" width="300"></td>
+    <td><img src="public/screenshots/sc3.gif" width="300"></td>
+  </tr>
+  <tr>
+    <td><img src="public/screenshots/sc4.gif" width="300"></td>
+    <td><img src="public/screenshots/sc5.gif" width="300"></td>
+    <td><img src="public/screenshots/sc6.gif" width="300"></td>
+  </tr>
+</table>
 
 **input** — soft button · soft potentiometer · pressure sensor ·
 knit stretch sensor · capacitive touch matrix · fabric bend sensor
@@ -26,16 +38,15 @@ every squash, glide, and slow color fade is driven by a damped spring.
 
 - **next.js 15** (app router) + **typescript**
 - three animation approaches, used deliberately:
-  - a hand-rolled damped spring (`lib/spring.ts`) — the physics, visible
-  - [motion](https://motion.dev) — for spring-driven ui transitions
-  - [gsap](https://gsap.com) — for timeline-sequenced signatures
+- a hand-rolled damped spring (`lib/spring.ts`) — the physics, visible
+- [motion](https://motion.dev) — for spring-driven ui transitions
+- [gsap](https://gsap.com) — for timeline-sequenced signatures
 - **web audio api** for the haptic motor's buzz — a single oscillator whose
   gain follows the same envelope function that drives the visuals
 - [electrocute-ui](https://ui.electrocute.io) — my design system, for tokens
   and the inkbloom mark on the about page
-- type: [jersey 25](https://fonts.google.com/specimen/Jersey+25) for display
-  (from sarah cadigan-fried's soft type collection, designed for machine
-  knitting), ibm plex mono for body
+- typeface: [jersey 25](https://fonts.google.com/specimen/Jersey+25) for display
+  (from sarah cadigan-fried's soft type collection), ibm plex mono for body
 - every demo is lazy-loaded (`next/dynamic`, ssr off) behind a skeleton, so
   first-load js stays at the next.js baseline (~103 kb) on every route
 - every demo respects `prefers-reduced-motion` and supports keyboard input
@@ -46,6 +57,12 @@ every squash, glide, and slow color fade is driven by a damped spring.
 npm install
 npm run dev
 ```
+
+`npm install` pulls in everything the demos depend on — [motion](https://motion.dev),
+[gsap](https://gsap.com), and [electrocute-ui](https://www.npmjs.com/package/electrocute-ui)
+are all listed in `package.json`, so there's nothing to install separately.
+(if you're wiring these into your own project instead, grab them with
+`npm install motion gsap electrocute-ui`.)
 
 open [http://localhost:3000](http://localhost:3000).
 
@@ -70,25 +87,6 @@ components/
 lib/
   spring.ts                 damped harmonic oscillator + reduced-motion helper
 ```
-
-## deploying on vercel
-
-1. push this repo to github
-2. go to [vercel.com/new](https://vercel.com/new) and import the repo —
-   vercel auto-detects next.js, no configuration needed
-3. hit deploy. that's it for a `.vercel.app` url.
-
-**adding a custom domain:**
-
-1. in the vercel project → settings → domains, add your domain
-2. at your registrar, point dns at vercel:
-   - apex domain (`example.com`): `A` record → `76.76.21.21`
-   - subdomain (`soft.example.com`): `CNAME` record → `cname.vercel-dns.com`
-3. update `metadataBase` in `app/layout.tsx` to the final url so open graph
-   tags resolve correctly
-4. redeploy
-
-every push to `main` auto-deploys; every pr gets its own preview url.
 
 ## credits
 
