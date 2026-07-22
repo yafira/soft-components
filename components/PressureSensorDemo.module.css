@@ -1,0 +1,37 @@
+.stackBtn {
+  all: unset;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.stackBtn:focus-visible {
+  outline: 3px solid var(--wisteria-deep);
+  outline-offset: 4px;
+  border-radius: var(--radius);
+}
+
+.svg {
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+}
+
+.label {
+  font-family: var(--font-body);
+  font-size: 13px;
+}
+
+.readout {
+  font-family: var(--font-body);
+  font-size: 17px;
+  fill: var(--ink);
+}
+
+.hint {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  margin: 0.5rem 0 0;
+  text-align: center;
+}

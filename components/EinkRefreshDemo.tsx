@@ -3,6 +3,7 @@
 import { useRef, useState, useCallback } from 'react';
 import gsap from 'gsap';
 import { prefersReducedMotion } from '@/lib/spring';
+import styles from './EinkRefreshDemo.module.css';
 
 const PHRASES = [
   'The gap keeps',
@@ -51,60 +52,21 @@ export default function EinkRefreshDemo() {
   }, [phraseIndex, refreshing]);
 
   return (
-    <div className="eink-demo">
-      <div ref={panelRef} className="eink-panel">
-        <p className="eink-text">
+    <div className={styles.demo}>
+      <div ref={panelRef} className={styles.panel}>
+        <p className={styles.text}>
           {PHRASES[phraseIndex]}
-          {ghost && <span className="ghost"> {PHRASES[(phraseIndex + 2) % PHRASES.length]}</span>}
+          {ghost && <span className={styles.ghost}> {PHRASES[(phraseIndex + 2) % PHRASES.length]}</span>}
         </p>
       </div>
-      <div className="eink-buttons">
-        <button className="pill" onClick={() => refresh(false)} disabled={refreshing}>partial refresh</button>
-        <button className="pill outline" onClick={() => refresh(true)} disabled={refreshing}>full refresh</button>
+      <div className={styles.buttons}>
+        <button className={styles.refreshBtn} onClick={() => refresh(false)} disabled={refreshing}>partial refresh</button>
+        <button className={`${styles.refreshBtn} ${styles.outline}`} onClick={() => refresh(true)} disabled={refreshing}>full refresh</button>
       </div>
-      <p className="hint">
+      <p className={styles.hint}>
         Partial refresh is fast but can leave a faint ghost of the old text.
         Full refresh flashes black/white a few times first to clear it.
       </p>
-
-      <style>{`
-        .eink-demo { text-align: center; }
-        .eink-panel {
-          max-width: 420px;
-          margin: 0 auto 1rem;
-          height: 140px;
-          border-radius: var(--radius);
-          background: #f4f0fb;
-          border: 1px solid var(--line);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 1rem;
-        }
-        .eink-text {
-          font-family: var(--font-body);
-          font-size: 1.1rem;
-          color: var(--ink);
-          margin: 0;
-        }
-        .ghost { color: var(--ink-soft); opacity: 0.35; }
-        .eink-buttons { display: flex; gap: 0.6rem; justify-content: center; margin-bottom: 0.6rem; }
-        .pill {
-          font-family: var(--font-body);
-          font-size: 0.82rem;
-          border-radius: 999px;
-          padding: 0.45rem 1.1rem;
-          cursor: pointer;
-          border: 1.5px solid var(--butter-deep);
-          background: var(--butter);
-          color: var(--ink);
-        }
-        .pill:hover:not(:disabled) { background: #f7dd8f; }
-        .pill.outline { background: transparent; border-color: var(--wisteria-deep); color: var(--wisteria-deep); }
-        .pill.outline:hover:not(:disabled) { background: var(--wisteria); }
-        .pill:disabled { opacity: 0.5; cursor: default; }
-        .hint { font-size: 0.78rem; color: var(--ink-soft); max-width: 40ch; margin: 0 auto; }
-      `}</style>
     </div>
   );
 }

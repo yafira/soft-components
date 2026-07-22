@@ -2,6 +2,7 @@
 
 import { useRef, useState, useCallback } from 'react';
 import { Spring, prefersReducedMotion } from '@/lib/spring';
+import styles from './PotentiometerDemo.module.css';
 
 const X0 = 60;
 const W = 440;
@@ -81,12 +82,12 @@ export default function PotentiometerDemo() {
   };
 
   return (
-    <div className="pot-demo">
+    <div className={styles.demo}>
       <svg
         ref={svgRef}
         viewBox="0 0 560 140"
         role="img"
-        className="pot-svg"
+        className={styles.svg}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
@@ -112,16 +113,9 @@ export default function PotentiometerDemo() {
           aria-valuenow={value}
           onKeyDown={onKeyDown}
         />
-        <text x="280" y="118" textAnchor="middle" className="pot-readout">{value.toFixed(2)}</text>
+        <text x="280" y="118" textAnchor="middle" className={styles.readout}>{value.toFixed(2)}</text>
       </svg>
-      <p className="hint">Drag the wiper, or focus it and use arrow keys</p>
-
-      <style>{`
-        .pot-demo { text-align: center; }
-        .pot-svg { width: 100%; max-width: 560px; height: auto; touch-action: none; }
-        .pot-readout { font-family: var(--font-body); font-size: 17px; fill: var(--matcha-deep); }
-        .hint { font-size: 0.78rem; color: var(--ink-soft); margin: 0.4rem 0 0; }
-      `}</style>
+      <p className={styles.hint}>Drag the wiper, or focus it and use arrow keys</p>
     </div>
   );
 }

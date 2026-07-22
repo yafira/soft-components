@@ -1,16 +1,13 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import styles from './Skeleton.module.css';
 
 const KnitStretchDemo = dynamic(() => import('./KnitStretchDemo'), {
   ssr: false,
   loading: () => (
-    <div className="knit-skeleton" aria-hidden="true">
-      <div className="skel-swatch" />
-      <style>{`
-        .knit-skeleton { text-align: center; }
-        .skel-swatch { max-width: 400px; height: 120px; margin: 0 auto; background: var(--card); border-radius: var(--radius); opacity: 0.6; }
-      `}</style>
+    <div className={styles.center} aria-hidden="true">
+      <div className={styles.box} style={{ maxWidth: 400, height: 120 }} />
     </div>
   ),
 });

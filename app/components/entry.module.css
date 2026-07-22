@@ -1,0 +1,58 @@
+.entry {
+  padding-top: 3rem;
+}
+
+.entryHeader {
+  margin-bottom: 2.5rem;
+}
+
+.crumb {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  margin-bottom: 0.4rem;
+}
+
+.lede {
+  max-width: 58ch;
+  color: var(--ink-soft);
+}
+
+.entry section {
+  margin-bottom: 3rem;
+}
+
+.panel {
+  background: var(--card);
+  border: 2px dashed var(--panel-border, var(--wisteria-deep));
+  border-radius: var(--radius-lg);
+  padding: 1.6rem;
+}
+
+.footNav {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  border-top: 1px dashed var(--line);
+  padding-top: 1.4rem;
+}
+
+/* used only on the soft button entry, harmless if unused elsewhere */
+.deepDive {
+  margin-top: 1rem;
+  border: 2px dashed var(--line);
+  border-radius: var(--radius);
+  padding: 0.2rem 1rem 0.9rem;
+}
+
+.deepDive summary {
+  cursor: pointer;
+  padding: 0.8rem 0;
+  font-size: 0.85rem;
+  color: var(--wisteria-deep);
+}
+
+.deepDive summary:hover {
+  color: var(--blush-deep);
+}

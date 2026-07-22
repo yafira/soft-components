@@ -2,6 +2,7 @@
 
 import { useRef, useState, useCallback } from 'react';
 import { Spring, prefersReducedMotion } from '@/lib/spring';
+import styles from './ThermochromicRevealDemo.module.css';
 
 const COLD = [201, 196, 220]; // wisteria-ish
 const HOT = [246, 200, 216]; // blush-ish
@@ -60,34 +61,14 @@ export default function ThermochromicRevealDemo() {
   };
 
   return (
-    <div className="thermo-demo">
-      <button className="patch-btn" onClick={toggle} aria-pressed={heating}>
-        <div ref={patchRef} className="patch" style={{ backgroundColor: lerpColor(0) }}>
-          <span className="patch-label">{heating ? 'heating' : 'press to heat'}</span>
+    <div className={styles.demo}>
+      <button className={styles.patchBtn} onClick={toggle} aria-pressed={heating}>
+        <div ref={patchRef} className={styles.patch} style={{ backgroundColor: lerpColor(0) }}>
+          <span className={styles.patchLabel}>{heating ? 'heating' : 'press to heat'}</span>
         </div>
       </button>
-      <p className="thermo-readout">Temperature: {(temp * 100).toFixed(0)}%</p>
-      <p className="hint">Conductive thread heats the patch; thermochromic ink shifts color as it warms, then fades slowly as it cools</p>
-
-      <style>{`
-        .thermo-demo { text-align: center; }
-        .patch-btn { all: unset; cursor: pointer; display: block; }
-        .patch {
-          width: 180px;
-          height: 120px;
-          margin: 0 auto;
-          border-radius: var(--radius);
-          border: 1.5px solid var(--line);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: background-color 60ms linear;
-        }
-        .patch-btn:focus-visible .patch { outline: 3px solid var(--wisteria-deep); outline-offset: 4px; }
-        .patch-label { font-family: var(--font-body); font-size: 0.85rem; color: var(--ink); }
-        .thermo-readout { font-family: var(--font-body); font-size: 0.9rem; color: var(--ink); margin-top: 1rem; margin-bottom: 0.2rem; }
-        .hint { font-size: 0.78rem; color: var(--ink-soft); max-width: 42ch; margin: 0 auto; }
-      `}</style>
+      <p className={styles.readout}>Temperature: {(temp * 100).toFixed(0)}%</p>
+      <p className={styles.hint}>Conductive thread heats the patch; thermochromic ink shifts color as it warms, then fades slowly as it cools</p>
     </div>
   );
 }

@@ -1,0 +1,46 @@
+.panel {
+  text-align: center;
+}
+
+.cutaway {
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+}
+
+.label {
+  font-family: var(--font-body);
+  font-size: 13px;
+}
+
+.label.small {
+  font-size: 11.5px;
+}
+
+.side {
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  fill: var(--ink-soft);
+}
+
+.state {
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  fill: var(--ink-soft);
+}
+
+.playBtn {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: var(--ink);
+  background: var(--butter);
+  border: 1.5px solid var(--butter-deep);
+  border-radius: 999px;
+  padding: 0.45rem 1.1rem;
+  cursor: pointer;
+  margin-top: 0.8rem;
+}
+
+.playBtn:hover {
+  background: #f7dd8f;
+}

@@ -1,0 +1,133 @@
+.categoryLabel {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  background: var(--label-bg, transparent);
+  border: 2px dashed;
+  border-color: var(--label-border, var(--wisteria-deep));
+  border-radius: 999px;
+  padding: 0.3rem 1.1rem;
+  margin: 2.8rem 0 1.2rem;
+}
+
+.categoryLabel:first-child {
+  margin-top: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.4rem;
+  padding-bottom: 1rem;
+}
+
+.card {
+  background: var(--card);
+  border: 2px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: var(--wisteria-deep);
+  box-shadow: var(--shadow-pop);
+}
+
+.demoTrigger {
+  all: unset;
+  cursor: pointer;
+  display: block;
+  background: #f2eaff;
+  border-bottom: 2px dashed var(--line);
+}
+
+.demoTrigger:focus-visible {
+  outline: 3px solid var(--wisteria-deep);
+  outline-offset: -3px;
+}
+
+.thumb {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.cardBody {
+  padding: 1.2rem 1.3rem 1.5rem;
+}
+
+.cardBody h2 {
+  font-size: 1.4rem;
+}
+
+.cardBody h2 a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.cardBody h2 a:hover {
+  color: var(--blush-deep);
+}
+
+.cardBody p {
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+  margin-bottom: 1.1rem;
+}
+
+.more {
+  display: inline-flex;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--wisteria-deep);
+  background: var(--wisteria);
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  text-decoration: none;
+  transition: background 150ms ease, color 150ms ease;
+}
+
+.more:hover {
+  background: var(--wisteria-deep);
+  color: #fff;
+}
+
+.fillBlush {
+  fill: var(--blush);
+  stroke: var(--blush-deep);
+}
+
+.fillMatcha {
+  fill: var(--matcha);
+  stroke: var(--matcha-deep);
+}
+
+.fillButter {
+  fill: var(--butter);
+  stroke: var(--butter-deep);
+}
+
+.labelBlush {
+  fill: var(--blush-deep);
+  font-family: var(--font-body);
+  font-size: 13px;
+}
+
+.state {
+  fill: var(--ink-soft);
+  font-family: var(--font-body);
+  font-size: 10.5px;
+}
+
+.mono {
+  font-family: var(--font-body);
+  font-size: 12px;
+  fill: var(--ink);
+}

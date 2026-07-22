@@ -1,0 +1,52 @@
+.about {
+  padding-top: 3rem;
+  max-width: 640px;
+}
+
+.panel {
+  background: var(--panel-bg, #faf6ff);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 1.8rem 2rem;
+}
+
+.panel p {
+  color: var(--ink-soft);
+}
+
+.panel p:last-child {
+  margin-bottom: 0;
+}
+
+.credit {
+  font-size: 0.85rem;
+}
+
+.why {
+  margin-top: 3rem;
+}
+
+.why p {
+  color: var(--ink-soft);
+}
+
+.why h3 {
+  margin-top: 2.2rem;
+  font-size: 1rem;
+}
+
+.refs {
+  padding-left: 1.2rem;
+}
+
+.refs li {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin-bottom: 0.8rem;
+  line-height: 1.55;
+}
+
+.mark {
+  display: block;
+  margin: 2.5rem auto 0;
+}

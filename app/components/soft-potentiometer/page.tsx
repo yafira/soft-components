@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
+import type { CSSProperties } from 'react';
 import Link from 'next/link';
 import LazyPotentiometerDemo from '@/components/LazyPotentiometerDemo';
+import styles from '../entry.module.css';
 
 export const metadata: Metadata = {
   title: 'soft potentiometer — soft components',
@@ -9,17 +11,17 @@ export const metadata: Metadata = {
 
 export default function SoftPotentiometerPage() {
   return (
-    <article className="wrap entry">
-      <header className="entry-header">
-        <p className="crumb"><Link href="/#library">library</Link> / input</p>
+    <article className={`wrap ${styles.entry}`}>
+      <header className={styles.entryHeader}>
+        <p className={styles.crumb}><Link href="/#library">library</Link> / input</p>
         <h1>soft potentiometer</h1>
-        <p className="lede">
+        <p className={styles.lede}>
           A strip of resistive fabric and something to touch it with. Where you
           press becomes a number. Drag the wiper below.
         </p>
       </header>
 
-      <section className="panel" aria-labelledby="demo-h">
+      <section className={styles.panel} aria-labelledby="demo-h" style={{ '--panel-border': 'var(--matcha-deep)' } as CSSProperties}>
         <h2 id="demo-h">slide it</h2>
         <LazyPotentiometerDemo />
       </section>
@@ -51,29 +53,11 @@ export default function SoftPotentiometerPage() {
           instrument rather than a precision dial — smooth the signal, and let
           relative motion matter more than absolute value.
         </p>
-        <p className="foot-nav">
+        <p className={styles.footNav}>
           <Link href="/components/soft-button">← soft button</Link>
           <span>next: <Link href="/components/pressure-sensor">pressure sensor →</Link></span>
         </p>
       </section>
-
-      <style>{`
-        .entry { padding-top: 3rem; }
-        .entry-header { margin-bottom: 2.5rem; }
-        .crumb { font-size: 0.78rem; color: var(--ink-soft); margin-bottom: 0.4rem; }
-        .lede { max-width: 58ch; color: var(--ink-soft); }
-        section { margin-bottom: 3rem; }
-        .panel {
-          background: var(--card);
-          border: 2px dashed var(--matcha-deep);
-          border-radius: var(--radius-lg);
-          padding: 1.6rem;
-        }
-        .foot-nav {
-          display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.6rem;
-          font-size: 0.85rem; border-top: 1px dashed var(--line); padding-top: 1.4rem;
-        }
-      `}</style>
     </article>
   );
 }

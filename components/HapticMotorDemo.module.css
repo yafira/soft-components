@@ -1,0 +1,111 @@
+.demo {
+  text-align: center;
+}
+
+.svg {
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+}
+
+.caption {
+  font-family: var(--font-body);
+  font-size: 11px;
+  fill: var(--ink-soft);
+}
+
+.caption.small {
+  font-size: 10px;
+}
+
+.signatureRow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: 1rem;
+}
+
+.signatureButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+}
+
+.sigBtn {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  border: 1.5px solid;
+  border-radius: 999px;
+  padding: 0.45rem 1rem;
+  cursor: pointer;
+  transition: background 150ms ease, color 150ms ease;
+}
+
+.muteBtn {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.3rem 0.8rem;
+  cursor: pointer;
+}
+
+.muteBtn:hover {
+  color: var(--ink);
+  border-color: var(--ink-soft);
+}
+
+.audioDebug {
+  margin-top: 1.2rem;
+  padding-top: 0.2rem;
+  border-top: 1px dashed var(--line);
+  text-align: center;
+}
+
+.audioDebug summary {
+  cursor: pointer;
+  padding: 0.8rem 0;
+  font-size: 0.78rem;
+  color: var(--wisteria-deep);
+}
+
+.audioDebug summary:hover {
+  color: var(--blush-deep);
+}
+
+.audioDebug[open] summary {
+  margin-bottom: 0.4rem;
+}
+
+.testToneBtn {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: var(--wisteria-deep);
+  background: none;
+  border: 1.5px solid var(--wisteria-deep);
+  border-radius: 999px;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+}
+
+.testToneBtn:hover {
+  background: var(--wisteria);
+}
+
+.audioStatus {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  margin: 0.6rem 0 0.3rem;
+}
+
+.audioHint {
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  max-width: 42ch;
+  margin: 0 auto;
+}

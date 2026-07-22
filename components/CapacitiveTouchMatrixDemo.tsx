@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useState, useCallback } from 'react';
+import styles from './CapacitiveTouchMatrixDemo.module.css';
 
 const COLS = 5;
 const ROWS = 4;
@@ -43,10 +44,10 @@ export default function CapacitiveTouchMatrixDemo() {
   };
 
   return (
-    <div className="matrix-demo">
+    <div className={styles.demo}>
       <div
         ref={gridRef}
-        className="matrix-grid"
+        className={styles.grid}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
@@ -58,7 +59,7 @@ export default function CapacitiveTouchMatrixDemo() {
           <button
             key={i}
             data-idx={i}
-            className={`matrix-pad${active.has(i) ? ' matrix-pad--on' : ''}`}
+            className={`${styles.pad}${active.has(i) ? ` ${styles.padOn}` : ''}`}
             aria-pressed={active.has(i)}
             aria-label={`pad ${i + 1}`}
             onFocus={() => touch(i, true)}
@@ -67,37 +68,8 @@ export default function CapacitiveTouchMatrixDemo() {
           />
         ))}
       </div>
-      <p className="matrix-readout">{active.size} Pad{active.size === 1 ? '' : 's'} touched</p>
-      <p className="hint">Drag across the pads — each one reports independently, like a real matrix scan</p>
-
-      <style>{`
-        .matrix-demo { text-align: center; }
-        .matrix-grid {
-          display: grid;
-          grid-template-columns: repeat(${COLS}, 1fr);
-          gap: 8px;
-          max-width: 420px;
-          margin: 0 auto;
-          touch-action: none;
-        }
-        .matrix-pad {
-          all: unset;
-          aspect-ratio: 1;
-          border-radius: 8px;
-          background: var(--card);
-          border: 1.5px solid var(--wisteria);
-          cursor: pointer;
-          transition: background-color 90ms ease, border-color 90ms ease, transform 90ms ease;
-        }
-        .matrix-pad:focus-visible { outline: 3px solid var(--wisteria-deep); outline-offset: 2px; }
-        .matrix-pad--on {
-          background: var(--wisteria-deep);
-          border-color: var(--wisteria-deep);
-          transform: scale(0.92);
-        }
-        .matrix-readout { font-family: var(--font-body); font-size: 0.95rem; color: var(--ink); margin-top: 1rem; margin-bottom: 0.2rem; }
-        .hint { font-size: 0.78rem; color: var(--ink-soft); }
-      `}</style>
+      <p className={styles.readout}>{active.size} Pad{active.size === 1 ? '' : 's'} touched</p>
+      <p className={styles.hint}>Drag across the pads — each one reports independently, like a real matrix scan</p>
     </div>
   );
 }

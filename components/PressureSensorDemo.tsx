@@ -3,6 +3,7 @@
 import { useRef, useState, useCallback } from 'react';
 import gsap from 'gsap';
 import { prefersReducedMotion } from '@/lib/spring';
+import styles from './PressureSensorDemo.module.css';
 
 export default function PressureSensorDemo() {
   const btnRef = useRef<HTMLButtonElement>(null);
@@ -71,7 +72,7 @@ export default function PressureSensorDemo() {
     <div>
       <button
         ref={btnRef}
-        className="stack-btn"
+        className={styles.stackBtn}
         aria-label="press and hold to squeeze the sensor stack"
         onPointerDown={start}
         onPointerUp={stop}
@@ -79,36 +80,27 @@ export default function PressureSensorDemo() {
         onKeyDown={onKeyDown}
         onKeyUp={onKeyUp}
       >
-        <svg viewBox="0 0 560 230" role="img" className="stack-svg">
+        <svg viewBox="0 0 560 230" role="img" className={styles.svg}>
           <title>velostat pressure sensor demo</title>
           <desc>a three-layer stack that compresses under pressure while a resistance readout falls.</desc>
           <g ref={topRef}>
             <rect x="160" y="30" width="240" height="30" rx="9" fill="var(--wisteria)" stroke="var(--wisteria-deep)" />
-            <text x="280" y="49" textAnchor="middle" className="st-label" fill="var(--wisteria-deep)">Conductive fabric</text>
+            <text x="280" y="49" textAnchor="middle" className={styles.label} fill="var(--wisteria-deep)">Conductive fabric</text>
           </g>
           <g ref={veloRef} style={{ transformBox: 'view-box', transformOrigin: '280px 87px' }}>
             <rect x="160" y="72" width="240" height="30" rx="9" fill="#c9c4bb" stroke="#8b857a" />
-            <text x="280" y="91" textAnchor="middle" className="st-label" fill="#5c574e">Velostat</text>
+            <text x="280" y="91" textAnchor="middle" className={styles.label} fill="#5c574e">Velostat</text>
           </g>
           <g ref={bottomRef}>
             <rect x="160" y="114" width="240" height="30" rx="9" fill="var(--wisteria)" stroke="var(--wisteria-deep)" />
-            <text x="280" y="133" textAnchor="middle" className="st-label" fill="var(--wisteria-deep)">Conductive fabric</text>
+            <text x="280" y="133" textAnchor="middle" className={styles.label} fill="var(--wisteria-deep)">Conductive fabric</text>
           </g>
-          <text x="280" y="185" textAnchor="middle" className="st-readout">{readout}</text>
+          <text x="280" y="185" textAnchor="middle" className={styles.readout}>{readout}</text>
           <rect x="130" y="200" width="300" height="8" rx="4" fill="var(--paper)" stroke="var(--line)" />
           <rect x="130" y="200" width={barWidth} height="8" rx="4" fill="var(--wisteria-deep)" />
         </svg>
       </button>
-      <p className="hint">Press and hold — works with space or enter too</p>
-
-      <style>{`
-        .stack-btn { all: unset; cursor: pointer; display: block; width: 100%; -webkit-tap-highlight-color: transparent; }
-        .stack-btn:focus-visible { outline: 3px solid var(--wisteria-deep); outline-offset: 4px; border-radius: var(--radius); }
-        .stack-svg { width: 100%; max-width: 560px; height: auto; }
-        .st-label { font-family: var(--font-body); font-size: 13px; }
-        .st-readout { font-family: var(--font-body); font-size: 17px; fill: var(--ink); }
-        .hint { font-size: 0.78rem; color: var(--ink-soft); margin: 0.5rem 0 0; text-align: center; }
-      `}</style>
+      <p className={styles.hint}>Press and hold — works with space or enter too</p>
     </div>
   );
 }

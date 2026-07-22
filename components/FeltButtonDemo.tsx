@@ -3,6 +3,7 @@
 import { useRef, useState, useCallback } from 'react';
 import { animate } from 'motion';
 import { prefersReducedMotion } from '@/lib/spring';
+import styles from './FeltButtonDemo.module.css';
 
 export default function FeltButtonDemo() {
   const faceRef = useRef<HTMLSpanElement>(null);
@@ -52,10 +53,10 @@ export default function FeltButtonDemo() {
   };
 
   return (
-    <div className="demo-row">
+    <div className={styles.demoRow}>
       <button
         ref={btnRef}
-        className="felt-btn"
+        className={styles.feltBtn}
         aria-label="press the felt button"
         onPointerDown={press}
         onPointerUp={release}
@@ -63,19 +64,19 @@ export default function FeltButtonDemo() {
         onKeyDown={onKeyDown}
         onKeyUp={onKeyUp}
       >
-        <span ref={faceRef} className="felt-face">
-          <svg className="felt-texture" viewBox="0 0 140 140" aria-hidden="true" preserveAspectRatio="none">
+        <span ref={faceRef} className={styles.feltFace}>
+          <svg className={styles.feltTexture} viewBox="0 0 140 140" aria-hidden="true" preserveAspectRatio="none">
             <filter id="fibers">
               <feTurbulence type="fractalNoise" baseFrequency={0.85} numOctaves={3} seed={7} />
               <feColorMatrix values="0 0 0 0 0.77  0 0 0 0 0.42  0 0 0 0 0.55  0 0 0 0.28 0" />
             </filter>
             <rect width="140" height="140" filter="url(#fibers)" />
           </svg>
-          <span className="felt-label">press</span>
+          <span className={styles.feltLabel}>press</span>
         </span>
       </button>
 
-      <div className="knobs">
+      <div className={styles.knobs}>
         <label>
           <span>stiffness <em>{stiffness}</em></span>
           <input type="range" min={40} max={400} step={1} value={stiffness}
@@ -91,46 +92,13 @@ export default function FeltButtonDemo() {
           <input type="range" min={0.05} max={0.4} step={0.01} value={depth}
                  onChange={(e) => setDepth(parseFloat(e.target.value))} />
         </label>
-        <p className="readout">
+        <p className={styles.readout}>
           Damping ratio <em>{ratio.toFixed(2)}</em> · <span>{character}</span>
         </p>
-        <p className="presses" aria-live="polite">
+        <p className={styles.presses} aria-live="polite">
           {presses} {presses === 1 ? 'press' : 'presses'}
         </p>
       </div>
-
-      <style>{`
-        .demo-row { display: flex; flex-wrap: wrap; gap: 2.2rem; align-items: center; }
-
-        .felt-btn { all: unset; cursor: pointer; -webkit-tap-highlight-color: transparent; }
-        .felt-btn:focus-visible .felt-face { outline: 3px solid var(--wisteria-deep); outline-offset: 6px; }
-        .felt-face {
-          position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 140px;
-          height: 140px;
-          border-radius: 34px;
-          background: var(--blush);
-          border: 1.5px solid var(--blush-deep);
-          overflow: hidden;
-          will-change: transform;
-        }
-        .felt-texture { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.4; pointer-events: none; }
-        .felt-label { position: relative; font-family: var(--font-display); font-size: 1.15rem; color: #8c3f5e; user-select: none; }
-
-        .knobs { flex: 1; min-width: 240px; }
-        .knobs label { display: block; margin-bottom: 0.9rem; font-size: 0.84rem; }
-        .knobs label span { display: flex; justify-content: space-between; margin-bottom: 0.25rem; color: var(--ink-soft); }
-        .knobs em { font-style: normal; color: var(--ink); }
-        .knobs input[type='range'] { width: 100%; accent-color: var(--wisteria-deep); }
-        .readout { font-size: 0.8rem; color: var(--ink-soft); margin: 0.4rem 0 0; }
-        .readout em { font-style: normal; color: var(--matcha-deep); }
-        .presses { font-size: 0.8rem; color: var(--ink-soft); margin-top: 0.5rem; }
-
-        @media (max-width: 560px) { .demo-row { justify-content: center; } }
-      `}</style>
     </div>
   );
 }

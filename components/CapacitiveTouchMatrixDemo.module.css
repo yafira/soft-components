@@ -1,0 +1,47 @@
+.demo {
+  text-align: center;
+}
+
+/* grid-template-columns matches the COLS constant (5) in the component */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  max-width: 420px;
+  margin: 0 auto;
+  touch-action: none;
+}
+
+.pad {
+  all: unset;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  background: var(--card);
+  border: 1.5px solid var(--wisteria);
+  cursor: pointer;
+  transition: background-color 90ms ease, border-color 90ms ease, transform 90ms ease;
+}
+
+.pad:focus-visible {
+  outline: 3px solid var(--wisteria-deep);
+  outline-offset: 2px;
+}
+
+.padOn {
+  background: var(--wisteria-deep);
+  border-color: var(--wisteria-deep);
+  transform: scale(0.92);
+}
+
+.readout {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ink);
+  margin-top: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.hint {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+}

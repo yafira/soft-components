@@ -1,0 +1,38 @@
+.header {
+  border-bottom: 1px dashed var(--line);
+  padding: 1.1rem 0;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  text-transform: lowercase;
+  font-size: 1.55rem;
+  color: var(--ink);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.nav {
+  display: flex;
+  gap: 1.4rem;
+}
+
+.nav a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.nav a:hover {
+  color: var(--blush-deep);
+  text-decoration: underline;
+}

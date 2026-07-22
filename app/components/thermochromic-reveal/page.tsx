@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import LazyThermochromicRevealDemo from '@/components/LazyThermochromicRevealDemo';
+import styles from '../entry.module.css';
 
 export const metadata: Metadata = {
   title: 'thermochromic reveal — soft components',
@@ -9,18 +10,18 @@ export const metadata: Metadata = {
 
 export default function ThermochromicRevealPage() {
   return (
-    <article className="wrap entry">
-      <header className="entry-header">
-        <p className="crumb"><Link href="/#library">library</Link> / output</p>
+    <article className={`wrap ${styles.entry}`}>
+      <header className={styles.entryHeader}>
+        <p className={styles.crumb}><Link href="/#library">library</Link> / output</p>
         <h1>thermochromic reveal</h1>
-        <p className="lede">
+        <p className={styles.lede}>
           Conductive thread stitched behind a patch of thermochromic ink. Run
           current through the thread, the patch warms, and the color shifts —
           slowly, the way heat actually moves through fabric.
         </p>
       </header>
 
-      <section className="panel" aria-labelledby="demo-h">
+      <section className={styles.panel} aria-labelledby="demo-h">
         <h2 id="demo-h">warm it</h2>
         <LazyThermochromicRevealDemo />
       </section>
@@ -56,29 +57,11 @@ export default function ThermochromicRevealPage() {
           not suited to anything needing quick feedback, but well suited to
           objects meant to be lived with rather than glanced at.
         </p>
-        <p className="foot-nav">
+        <p className={styles.footNav}>
           <Link href="/components/haptic-motor">← haptic motor</Link>
           <span>next: <Link href="/components/eink-refresh">e-ink refresh →</Link></span>
         </p>
       </section>
-
-      <style>{`
-        .entry { padding-top: 3rem; }
-        .entry-header { margin-bottom: 2.5rem; }
-        .crumb { font-size: 0.78rem; color: var(--ink-soft); margin-bottom: 0.4rem; }
-        .lede { max-width: 58ch; color: var(--ink-soft); }
-        section { margin-bottom: 3rem; }
-        .panel {
-          background: var(--card);
-          border: 2px dashed var(--wisteria-deep);
-          border-radius: var(--radius-lg);
-          padding: 1.6rem;
-        }
-        .foot-nav {
-          display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.6rem;
-          font-size: 0.85rem; border-top: 1px dashed var(--line); padding-top: 1.4rem;
-        }
-      `}</style>
     </article>
   );
 }

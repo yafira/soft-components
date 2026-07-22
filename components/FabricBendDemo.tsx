@@ -2,6 +2,7 @@
 
 import { useRef, useState, useCallback } from 'react';
 import { Spring, prefersReducedMotion } from '@/lib/spring';
+import styles from './FabricBendDemo.module.css';
 
 const REST_R = 9; // kΩ flat
 const BEND_GAIN = 27;
@@ -90,12 +91,12 @@ export default function FabricBendDemo() {
   const resistance = REST_R + Math.abs(bend) * BEND_GAIN;
 
   return (
-    <div className="bend-demo">
+    <div className={styles.demo}>
       <svg
         ref={svgRef}
         viewBox="0 0 400 120"
         role="img"
-        className="bend-svg"
+        className={styles.svg}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
@@ -116,16 +117,9 @@ export default function FabricBendDemo() {
           aria-valuenow={bend}
           onKeyDown={onKeyDown}
         />
-        <text x="200" y="105" textAnchor="middle" className="bend-readout">R ≈ {resistance.toFixed(1)} kΩ</text>
+        <text x="200" y="105" textAnchor="middle" className={styles.readout}>R ≈ {resistance.toFixed(1)} kΩ</text>
       </svg>
-      <p className="hint">Drag the handle up or down to bend the strip — release to flatten</p>
-
-      <style>{`
-        .bend-demo { text-align: center; }
-        .bend-svg { width: 100%; max-width: 400px; height: auto; touch-action: none; }
-        .bend-readout { font-family: var(--font-body); font-size: 15px; fill: var(--ink); }
-        .hint { font-size: 0.78rem; color: var(--ink-soft); margin: 0.4rem 0 0; }
-      `}</style>
+      <p className={styles.hint}>Drag the handle up or down to bend the strip — release to flatten</p>
     </div>
   );
 }

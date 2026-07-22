@@ -3,6 +3,7 @@
 import { useRef, useState, useCallback, useEffect } from 'react';
 import gsap from 'gsap';
 import { prefersReducedMotion } from '@/lib/spring';
+import styles from './HapticMotorDemo.module.css';
 
 type Signature = 'pulse' | 'double' | 'ramp';
 
@@ -166,8 +167,8 @@ export default function HapticMotorDemo() {
   const activeColor = SIGNATURES.find((s) => s.id === playing)?.color || 'var(--ink-soft)';
 
   return (
-    <div className="haptic-demo">
-      <svg viewBox="0 0 340 160" role="img" className="haptic-svg">
+    <div className={styles.demo}>
+      <svg viewBox="0 0 340 160" role="img" className={styles.svg}>
         <title>haptic motor signature demo</title>
         <desc>a coin-style vibration motor spins an off-center weight in one of three patterns; rings show the vibration and a trace plots the intensity over time.</desc>
 
@@ -197,19 +198,19 @@ export default function HapticMotorDemo() {
           <circle cx="90" cy="60" r="2.4" fill="#4a463f" />
         </g>
 
-        <text x="90" y="102" textAnchor="middle" className="haptic-caption">Coin motor + eccentric weight</text>
+        <text x="90" y="102" textAnchor="middle" className={styles.caption}>Coin motor + eccentric weight</text>
 
         <line x1="20" y1="70" x2="320" y2="70" stroke="var(--line)" strokeDasharray="3 3" />
         <polyline ref={traceRef} points="" fill="none" stroke="var(--blush-deep)" strokeWidth={2} />
-        <text x="20" y="148" className="haptic-caption small">Intensity over time →</text>
+        <text x="20" y="148" className={`${styles.caption} ${styles.small}`}>Intensity over time →</text>
       </svg>
 
-      <div className="signature-row">
-        <div className="signature-buttons">
+      <div className={styles.signatureRow}>
+        <div className={styles.signatureButtons}>
           {SIGNATURES.map((s) => (
             <button
               key={s.id}
-              className="sig-btn"
+              className={styles.sigBtn}
               style={{ borderColor: s.color, color: playing === s.id ? '#fff' : s.color, background: playing === s.id ? s.color : 'transparent' }}
               onClick={() => play(s.id)}
             >
@@ -218,7 +219,7 @@ export default function HapticMotorDemo() {
           ))}
         </div>
         <button
-          className="mute-btn"
+          className={styles.muteBtn}
           aria-pressed={muted}
           aria-label={muted ? 'unmute buzz sound' : 'mute buzz sound'}
           onClick={() => setMuted((m) => !m)}
@@ -227,73 +228,17 @@ export default function HapticMotorDemo() {
         </button>
       </div>
 
-      <details className="audio-debug">
+      <details className={styles.audioDebug}>
         <summary>Sound not working? Diagnostics</summary>
-        <button className="test-tone-btn" onClick={testTone}>▶ Play isolated test tone</button>
-        <p className="audio-status">Audio status: {audioStatus}</p>
-        <p className="audio-hint">
+        <button className={styles.testToneBtn} onClick={testTone}>▶ Play isolated test tone</button>
+        <p className={styles.audioStatus}>Audio status: {audioStatus}</p>
+        <p className={styles.audioHint}>
           If the test tone above is silent, the issue is your browser/OS
           audio setup, not this demo — check the tab isn&apos;t muted
           (right-click the tab), your system volume, and (on iPhone) that
           the hardware silent switch is off.
         </p>
       </details>
-
-      <style>{`
-        .haptic-demo { text-align: center; }
-        .haptic-svg { width: 100%; max-width: 340px; height: auto; }
-        .haptic-caption { font-family: var(--font-body); font-size: 11px; fill: var(--ink-soft); }
-        .haptic-caption.small { font-size: 10px; }
-        .signature-row { display: flex; flex-direction: column; align-items: center; gap: 0.7rem; margin-top: 1rem; }
-        .signature-buttons { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; }
-        .sig-btn {
-          font-family: var(--font-body);
-          font-size: 0.78rem;
-          border: 1.5px solid;
-          border-radius: 999px;
-          padding: 0.45rem 1rem;
-          cursor: pointer;
-          transition: background 150ms ease, color 150ms ease;
-        }
-        .mute-btn {
-          font-family: var(--font-body);
-          font-size: 0.75rem;
-          color: var(--ink-soft);
-          background: none;
-          border: 1px solid var(--line);
-          border-radius: 999px;
-          padding: 0.3rem 0.8rem;
-          cursor: pointer;
-        }
-        .mute-btn:hover { color: var(--ink); border-color: var(--ink-soft); }
-        .audio-debug {
-          margin-top: 1.2rem;
-          padding-top: 0.2rem;
-          border-top: 1px dashed var(--line);
-          text-align: center;
-        }
-        .audio-debug summary {
-          cursor: pointer;
-          padding: 0.8rem 0;
-          font-size: 0.78rem;
-          color: var(--wisteria-deep);
-        }
-        .audio-debug summary:hover { color: var(--blush-deep); }
-        .audio-debug[open] summary { margin-bottom: 0.4rem; }
-        .test-tone-btn {
-          font-family: var(--font-body);
-          font-size: 0.78rem;
-          color: var(--wisteria-deep);
-          background: none;
-          border: 1.5px solid var(--wisteria-deep);
-          border-radius: 999px;
-          padding: 0.4rem 1rem;
-          cursor: pointer;
-        }
-        .test-tone-btn:hover { background: var(--wisteria); }
-        .audio-status { font-family: var(--font-body); font-size: 0.75rem; color: var(--ink-soft); margin: 0.6rem 0 0.3rem; }
-        .audio-hint { font-size: 0.72rem; color: var(--ink-soft); max-width: 42ch; margin: 0 auto; }
-      `}</style>
     </div>
   );
 }

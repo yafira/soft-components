@@ -2,6 +2,7 @@
 
 import { useRef, useState, useCallback } from 'react';
 import { Spring, prefersReducedMotion } from '@/lib/spring';
+import styles from './KnitStretchDemo.module.css';
 
 const REST_R = 12; // kΩ at rest
 const STRETCH_GAIN = 38; // kΩ added at full stretch
@@ -102,12 +103,12 @@ export default function KnitStretchDemo() {
   const resistance = REST_R + stretch * STRETCH_GAIN;
 
   return (
-    <div className="knit-demo">
+    <div className={styles.demo}>
       <svg
         ref={svgRef}
         viewBox="0 0 400 120"
         role="img"
-        className="knit-svg"
+        className={styles.svg}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
@@ -128,16 +129,9 @@ export default function KnitStretchDemo() {
           aria-valuenow={stretch}
           onKeyDown={onKeyDown}
         />
-        <text x="200" y="105" textAnchor="middle" className="knit-readout">R ≈ {resistance.toFixed(1)} kΩ</text>
+        <text x="200" y="105" textAnchor="middle" className={styles.readout}>R ≈ {resistance.toFixed(1)} kΩ</text>
       </svg>
-      <p className="hint">Drag the handle to stretch the swatch — release to relax</p>
-
-      <style>{`
-        .knit-demo { text-align: center; }
-        .knit-svg { width: 100%; max-width: 400px; height: auto; touch-action: none; }
-        .knit-readout { font-family: var(--font-body); font-size: 15px; fill: var(--ink); }
-        .hint { font-size: 0.78rem; color: var(--ink-soft); margin: 0.4rem 0 0; }
-      `}</style>
+      <p className={styles.hint}>Drag the handle to stretch the swatch — release to relax</p>
     </div>
   );
 }

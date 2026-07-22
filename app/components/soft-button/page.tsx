@@ -1,26 +1,36 @@
-import type { Metadata } from 'next';
-import Link from 'next/link';
-import LazyFeltButtonDemo from '@/components/LazyFeltButtonDemo';
-import LazyFeltButtonCutaway from '@/components/LazyFeltButtonCutaway';
+import type { Metadata } from "next";
+import type { CSSProperties } from "react";
+import Link from "next/link";
+import LazyFeltButtonDemo from "@/components/LazyFeltButtonDemo";
+import LazyFeltButtonCutaway from "@/components/LazyFeltButtonCutaway";
+import styles from "../entry.module.css";
 
 export const metadata: Metadata = {
-  title: 'soft button — soft components',
-  description: 'A felt button you can press: the physics, the material, the design thinking, and the code.',
+  title: "soft button — soft components",
+  description:
+    "A felt button you can press: the physics, the material, the design thinking, and the code.",
 };
 
 export default function SoftButtonPage() {
   return (
-    <article className="wrap entry">
-      <header className="entry-header">
-        <p className="crumb"><Link href="/#library">library</Link> / input</p>
+    <article className={`wrap ${styles.entry}`}>
+      <header className={styles.entryHeader}>
+        <p className={styles.crumb}>
+          <Link href="/#library">library</Link> / input
+        </p>
         <h1>soft button</h1>
-        <p className="lede">
+        <p className={styles.lede}>
           A dome of felt over a conductive pad. The gentlest possible way to say
-          &ldquo;yes&rdquo; to a circuit. Press it below — and tune how soft it feels.
+          &ldquo;yes&rdquo; to a circuit. Press it below — and tune how soft it
+          feels.
         </p>
       </header>
 
-      <section className="panel" aria-labelledby="demo-h">
+      <section
+        className={styles.panel}
+        aria-labelledby="demo-h"
+        style={{ "--panel-border": "var(--wisteria)" } as CSSProperties}
+      >
         <h2 id="demo-h">press it</h2>
         <LazyFeltButtonDemo />
       </section>
@@ -29,12 +39,16 @@ export default function SoftButtonPage() {
         <h2 id="inside-h">what happens inside</h2>
         <p>
           A soft button is a sandwich. Felt on top, an air gap in the middle,
-          conductive fabric below. At rest the gap keeps the circuit open. Press,
-          and the felt carries your fingertip down until the two conductive layers
-          touch — the circuit closes, current flows, your microcontroller sees a
-          HIGH. Let go, and the felt&apos;s fibers push everything back apart.
+          conductive fabric below. At rest the gap keeps the circuit open.
+          Press, and the felt carries your fingertip down until the two
+          conductive layers touch — the circuit closes, current flows, your
+          microcontroller sees a HIGH. Let go, and the felt&apos;s fibers push
+          everything back apart.
         </p>
-        <div className="panel">
+        <div
+          className={styles.panel}
+          style={{ "--panel-border": "var(--wisteria)" } as CSSProperties}
+        >
           <LazyFeltButtonCutaway />
         </div>
       </section>
@@ -42,26 +56,29 @@ export default function SoftButtonPage() {
       <section aria-labelledby="physics-h">
         <h2 id="physics-h">the physics (and the code)</h2>
         <p>
-          The on-screen squash isn&apos;t an easing curve. It&apos;s a simulation:
-          the button&apos;s scale is a mass on a damped spring, integrated every
-          frame. This page runs on <a href="https://motion.dev">motion</a>&apos;s
-          spring engine rather than a hand-rolled loop — same underlying math,
-          but tuned and battle-tested:
+          The on-screen squash isn&apos;t an easing curve. It&apos;s a
+          simulation: the button&apos;s scale is a mass on a damped spring,
+          integrated every frame. This page runs on{" "}
+          <a href="https://motion.dev">motion</a>&apos;s spring engine rather
+          than a hand-rolled loop — same underlying math, but tuned and
+          battle-tested:
         </p>
-        <pre><code>{`import { animate } from "motion";
+        <pre>
+          <code>{`import { animate } from "motion";
 
 animate(
   feltFace,
   { scaleY: [1, 0.78], scaleX: [1, 1.1] },
   { type: "spring", stiffness: 140, damping: 14 }
-);`}</code></pre>
+);`}</code>
+        </pre>
         <p>
           Underneath, it&apos;s the same integration a hand-rolled version would
           do — displacement, spring force, damping force, velocity, position,
           every frame — but Motion adds things worth not reinventing: velocity
           carries over correctly when you retarget mid-motion (press again
-          before it settles and it doesn&apos;t jump), and it auto-stops once the
-          spring settles rather than running an idle rAF loop forever.
+          before it settles and it doesn&apos;t jump), and it auto-stops once
+          the spring settles rather than running an idle rAF loop forever.
         </p>
         <p>
           The character still lives in the <strong>damping ratio</strong> —
@@ -79,15 +96,17 @@ animate(
           volume. That single constraint is most of why it reads as
           &ldquo;soft.&rdquo;
         </p>
-        <details className="deep-dive">
+        <details className={styles.deepDive}>
           <summary>See the raw integration Motion is doing for you</summary>
-          <pre><code>{`const displacement = value - target;
+          <pre>
+            <code>{`const displacement = value - target;
 const springForce  = -stiffness * displacement;
 const dampingForce = -damping * velocity;
 const acceleration = (springForce + dampingForce) / mass;
 
 velocity += acceleration * dt;
-value    += velocity * dt;`}</code></pre>
+value    += velocity * dt;`}</code>
+          </pre>
         </details>
       </section>
 
@@ -116,20 +135,21 @@ value    += velocity * dt;`}</code></pre>
           Anywhere a click would be too loud. Soft buttons suit calm technology:
           bedside objects, wearables, textile interfaces, anything meant to be
           touched slowly. They trade precision for warmth — no tactile click
-          means you confirm the press some other way (a haptic pulse, a light,
-          a change on screen). On the soft computer, each of the four felt
-          buttons has its own haptic motor with a distinct signature, so your
-          fingertip learns which corpus it pressed without looking.
+          means you confirm the press some other way (a haptic pulse, a light, a
+          change on screen). On the soft computer, each of the four felt buttons
+          has its own haptic motor with a distinct signature, so your fingertip
+          learns which corpus it pressed without looking.
         </p>
       </section>
 
       <section aria-labelledby="code-h">
         <h2 id="code-h">take the code</h2>
         <p>
-          The FeltButtonDemo component powering this page, ready to drop into a
-          React project.
+          The FeltButtonDemo component powering this page, is ready to drop into
+          a React project.
         </p>
-        <pre><code>{`import { animate } from "motion";
+        <pre>
+          <code>{`import { animate } from "motion";
 
 function press(face: HTMLElement, stiffness: number, damping: number, depth: number) {
   animate(
@@ -141,51 +161,18 @@ function press(face: HTMLElement, stiffness: number, damping: number, depth: num
 
 function release(face: HTMLElement, stiffness: number, damping: number) {
   animate(face, { scaleY: 1, scaleX: 1 }, { type: "spring", stiffness, damping });
-}`}</code></pre>
-        <p className="foot-nav">
+}`}</code>
+        </pre>
+        <p className={styles.footNav}>
           <Link href="/#library">← back to the library</Link>
-          <span>next: <Link href="/components/soft-potentiometer">soft potentiometer →</Link></span>
+          <span>
+            next:{" "}
+            <Link href="/components/soft-potentiometer">
+              soft potentiometer →
+            </Link>
+          </span>
         </p>
       </section>
-
-      <style>{`
-        .entry { padding-top: 3rem; }
-        .entry-header { margin-bottom: 2.5rem; }
-        .crumb { font-size: 0.78rem; color: var(--ink-soft); margin-bottom: 0.4rem; }
-        .lede { max-width: 58ch; color: var(--ink-soft); }
-        section { margin-bottom: 3rem; }
-
-        .panel {
-          background: var(--card);
-          border: 2px dashed var(--wisteria);
-          border-radius: var(--radius-lg);
-          padding: 1.6rem;
-        }
-
-        .foot-nav {
-          display: flex;
-          justify-content: space-between;
-          flex-wrap: wrap;
-          gap: 0.6rem;
-          font-size: 0.85rem;
-          border-top: 1px dashed var(--line);
-          padding-top: 1.4rem;
-        }
-
-        .deep-dive {
-          margin-top: 1rem;
-          border: 2px dashed var(--line);
-          border-radius: var(--radius);
-          padding: 0.2rem 1rem 0.9rem;
-        }
-        .deep-dive summary {
-          cursor: pointer;
-          padding: 0.8rem 0;
-          font-size: 0.85rem;
-          color: var(--wisteria-deep);
-        }
-        .deep-dive summary:hover { color: var(--blush-deep); }
-      `}</style>
     </article>
   );
 }

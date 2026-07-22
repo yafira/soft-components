@@ -1,16 +1,13 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import styles from './Skeleton.module.css';
 
 const FeltButtonCutaway = dynamic(() => import('./FeltButtonCutaway'), {
   ssr: false,
   loading: () => (
-    <div className="cutaway-skeleton" aria-hidden="true">
-      <div className="skel-diagram" />
-      <style>{`
-        .cutaway-skeleton { text-align: center; }
-        .skel-diagram { max-width: 560px; height: 240px; margin: 0 auto; background: var(--card); border-radius: var(--radius); opacity: 0.6; }
-      `}</style>
+    <div className={styles.center} aria-hidden="true">
+      <div className={styles.box} style={{ maxWidth: 560, height: 240 }} />
     </div>
   ),
 });

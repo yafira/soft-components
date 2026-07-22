@@ -1,0 +1,7 @@
+.footer {
+  border-top: 1px dashed var(--line);
+  margin-top: 5rem;
+  padding: 2rem 0 3rem;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+}

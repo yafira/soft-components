@@ -7,6 +7,6 @@
 // build output and this file can go away.)
 import { Inkbloom } from 'electrocute-ui';
 
-export default function AboutMark() {
-  return <Inkbloom size="lg" aria-hidden="true" className="about-mark" />;
+export default function AboutMark({ className }: { className?: string }) {
+  return <Inkbloom size="lg" aria-hidden="true" className={className} />;
 }

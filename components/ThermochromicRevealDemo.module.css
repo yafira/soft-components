@@ -1,0 +1,47 @@
+.demo {
+  text-align: center;
+}
+
+.patchBtn {
+  all: unset;
+  cursor: pointer;
+  display: block;
+}
+
+.patch {
+  width: 180px;
+  height: 120px;
+  margin: 0 auto;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 60ms linear;
+}
+
+.patchBtn:focus-visible .patch {
+  outline: 3px solid var(--wisteria-deep);
+  outline-offset: 4px;
+}
+
+.patchLabel {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--ink);
+}
+
+.readout {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--ink);
+  margin-top: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.hint {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  max-width: 42ch;
+  margin: 0 auto;
+}

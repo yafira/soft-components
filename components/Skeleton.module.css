@@ -1,0 +1,47 @@
+.center {
+  text-align: center;
+}
+
+.box {
+  margin: 0 auto;
+  background: var(--card);
+  border-radius: var(--radius);
+  opacity: 0.6;
+}
+
+.flexRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.2rem;
+  align-items: center;
+}
+
+.feltBox {
+  width: 140px;
+  height: 140px;
+  border-radius: 34px;
+  background: var(--blush);
+  opacity: 0.5;
+}
+
+.knobsBox {
+  flex: 1;
+  min-width: 240px;
+  height: 140px;
+  background: var(--card);
+  border-radius: var(--radius);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.4rem;
+  padding-bottom: 2rem;
+}
+
+.gridCard {
+  height: 260px;
+  border-radius: var(--radius-lg);
+  background: var(--card);
+  border: 1px solid var(--line);
+}
