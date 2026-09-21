@@ -89,7 +89,7 @@ export default function FlipDotDemo() {
   const root = useRef<HTMLDivElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
   const boardRef = useRef<Board | null>(null);
-  const onColor = useRef("#c23a7b");
+  const onColor = useRef("#fbe7ae");
   const start = useRef<() => void>(() => {});
   const redraw = useRef<() => void>(() => {});
   const slowRef = useRef(slow);
@@ -121,7 +121,7 @@ export default function FlipDotDemo() {
     el.height = Math.round(HEIGHT * density);
 
     if (root.current) {
-      const accent = getComputedStyle(root.current).getPropertyValue("--scd-accent").trim();
+      const accent = getComputedStyle(root.current).getPropertyValue("--scd-flip").trim();
       if (accent) onColor.current = accent;
     }
 

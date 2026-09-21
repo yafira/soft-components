@@ -1,38 +1,29 @@
 // shared styles for the soft speaker, zipper sensor, and flip-dot demos
-// every color comes from a --scd-* token on .scd, so mapping these demos to
-// your electrocute-ui tokens is a matter of overriding four variables
+// the --scd-* tokens below point at the site palette (--ink, --blush-deep,
+// --wisteria and friends), so recoloring the site recolors these demos
 
 export const demoCss = `
 .scd {
-  --scd-ink: #2b2530;
-  --scd-paper: #fbf7f3;
-  --scd-accent: #c23a7b;
-  --scd-on-accent: #ffffff;
-  --scd-muted: color-mix(in srgb, var(--scd-ink) 62%, transparent);
-  --scd-line: color-mix(in srgb, var(--scd-ink) 22%, transparent);
-  --scd-surface: color-mix(in srgb, var(--scd-paper) 94%, var(--scd-ink));
-  --scd-fabric: color-mix(in srgb, var(--scd-accent) 60%, var(--scd-paper));
+  --scd-ink: var(--ink, #3d3548);
+  --scd-paper: var(--card, #ffffff);
+  --scd-accent: var(--blush-deep, #c46a8c);
+  --scd-accent-soft: var(--blush, #f6c8d8);
+  --scd-muted: var(--ink-soft, #6f6580);
+  --scd-line: var(--line, #ddd0f0);
+  --scd-surface: #f7f4fd;
+  --scd-fabric: var(--wisteria, #cdc1ee);
+  --scd-flip: var(--butter, #fbe7ae);
   display: grid;
   gap: 1rem;
   width: 100%;
-  max-width: 44rem;
   color: var(--scd-ink);
   font-size: 0.95rem;
-  line-height: 1.5;
-}
-
-@media (prefers-color-scheme: dark) {
-  .scd {
-    --scd-ink: #f1e9f3;
-    --scd-paper: #1b171e;
-    --scd-accent: #ee6fa6;
-    --scd-on-accent: #1b0f16;
-  }
+  line-height: 1.6;
 }
 
 .scd-stage {
-  border: 1px solid var(--scd-line);
-  border-radius: 12px;
+  border: 2px solid var(--scd-line);
+  border-radius: var(--radius, 14px);
   padding: 0.5rem;
   background: var(--scd-surface);
 }
@@ -104,7 +95,7 @@ export const demoCss = `
   font: inherit;
   padding: 0.45rem 0.95rem;
   border-radius: 999px;
-  border: 1px solid var(--scd-line);
+  border: 2px dashed var(--scd-line);
   background: transparent;
   color: var(--scd-ink);
   cursor: pointer;
@@ -115,9 +106,9 @@ export const demoCss = `
 }
 
 .scd-btn[aria-pressed="true"] {
-  background: var(--scd-accent);
-  border-color: var(--scd-accent);
-  color: var(--scd-on-accent);
+  background: var(--scd-accent-soft);
+  border: 2px solid var(--scd-accent);
+  color: var(--scd-ink);
 }
 
 .scd-btn:disabled {
@@ -131,8 +122,8 @@ export const demoCss = `
   min-width: 0;
   padding: 0.45rem 0.75rem;
   border-radius: 8px;
-  border: 1px solid var(--scd-line);
-  background: transparent;
+  border: 2px solid var(--scd-line);
+  background: var(--scd-paper);
   color: var(--scd-ink);
 }
 
