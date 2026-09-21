@@ -7,6 +7,9 @@ import { animate } from 'motion';
 import { color } from 'electrocute-ui';
 import { prefersReducedMotion } from '@/lib/spring';
 import styles from './LibraryGrid.module.css';
+import ZipperSensorCard from './ZipperSensorCard';
+import SoftSpeakerCard from './SoftSpeakerCard';
+import FlipDotCard from './FlipDotCard';
 
 export default function LibraryGrid() {
   const feltRef = useRef<SVGGElement>(null);
@@ -314,6 +317,8 @@ export default function LibraryGrid() {
           </div>
         </article>
 
+        <ZipperSensorCard />
+
       </div>
 
       <div className={styles.categoryLabel} style={{ '--label-bg': color.blushPowder, '--label-border': 'var(--blush-deep)' } as CSSProperties}>output</div>
@@ -352,6 +357,8 @@ export default function LibraryGrid() {
           </div>
         </article>
 
+        <SoftSpeakerCard />
+
       </div>
 
       <div className={styles.categoryLabel} style={{ '--label-bg': color.butterPuff, '--label-border': 'var(--butter-deep)' } as CSSProperties}>display</div>
@@ -372,6 +379,8 @@ export default function LibraryGrid() {
             <Link className={styles.more} href="/components/eink-refresh">how it works →</Link>
           </div>
         </article>
+
+        <FlipDotCard />
 
       </div>
     </section>
