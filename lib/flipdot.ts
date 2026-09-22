@@ -120,8 +120,7 @@ export function simulateBoard(
     omega[i] = w;
 
     const pulseDone = start < 0 || t > start + PULSE_TIME;
-    const settled =
-      Math.abs(w) < 2 && (th < 0.003 || th > Math.PI - 0.003);
+    const settled = Math.abs(w) < 2 && (th < 0.003 || th > Math.PI - 0.003);
     if (pulseDone && settled) {
       theta[i] = th < Math.PI / 2 ? 0 : Math.PI;
       omega[i] = 0;
@@ -215,6 +214,30 @@ export function blankColumns(count: number): number[] {
 export function centerColumns(columns: number[]): number[] {
   const pad = Math.max(0, Math.floor((COLS - columns.length) / 2));
   return [...blankColumns(pad), ...columns];
+}
+
+// fits any set of columns onto the physical board. if it's narrower than the
+// board, it's centered as usual. if it's wider, it's shrunk to fit: columns
+// that would land on the same physical dot are merged (bitwise or), which
+// reads like a bolder, denser version of the same message rather than one
+// with letters missing off the end
+export function fitToBoard(columns: number[]): boolean[] {
+  if (columns.length <= COLS) return columnsToBitmap(centerColumns(columns));
+
+  const bits = emptyBitmap();
+  for (let c = 0; c < COLS; c++) {
+    const from = Math.floor((c * columns.length) / COLS);
+    const to = Math.max(
+      from + 1,
+      Math.floor(((c + 1) * columns.length) / COLS),
+    );
+    let merged = 0;
+    for (let s = from; s < to; s++) merged |= columns[s] ?? 0;
+    for (let r = 0; r < ROWS; r++) {
+      bits[r * COLS + c] = ((merged >> r) & 1) === 1;
+    }
+  }
+  return bits;
 }
 
 // turns the first COLS columns into a bitmap, row by row

@@ -9,7 +9,7 @@ import {
   SLOW_MOTION,
   bitmapOf,
   blankColumns,
-  centerColumns,
+  fitToBoard,
   columnsToBitmap,
   commandBoard,
   createBoard,
@@ -53,7 +53,15 @@ function drawBoard(canvas: HTMLCanvasElement, board: Board, onColor: string) {
       const cy = PAD + r * PITCH + PITCH / 2;
 
       ctx.beginPath();
-      ctx.ellipse(cx, cy, Math.max(0.6, RADIUS * Math.abs(facing)), RADIUS, 0, 0, Math.PI * 2);
+      ctx.ellipse(
+        cx,
+        cy,
+        Math.max(0.6, RADIUS * Math.abs(facing)),
+        RADIUS,
+        0,
+        0,
+        Math.PI * 2,
+      );
       ctx.fillStyle = facing >= 0 ? OFF_COLOR : onColor;
       ctx.fill();
       ctx.stroke();
@@ -121,7 +129,9 @@ export default function FlipDotDemo() {
     el.height = Math.round(HEIGHT * density);
 
     if (root.current) {
-      const accent = getComputedStyle(root.current).getPropertyValue("--scd-flip").trim();
+      const accent = getComputedStyle(root.current)
+        .getPropertyValue("--scd-flip")
+        .trim();
       if (accent) onColor.current = accent;
     }
 
@@ -136,7 +146,11 @@ export default function FlipDotDemo() {
       last = now;
 
       const impacts: number[] = [];
-      const moving = simulateBoard(board, wall * (slowRef.current ? SLOW_MOTION : 1), impacts);
+      const moving = simulateBoard(
+        board,
+        wall * (slowRef.current ? SLOW_MOTION : 1),
+        impacts,
+      );
       draw();
       if (soundRef.current) playImpacts(impacts);
 
@@ -156,8 +170,10 @@ export default function FlipDotDemo() {
     redraw.current = draw;
 
     // the first message flips in once, unless motion is reduced
-    const instant = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    commandBoard(board, columnsToBitmap(centerColumns(textColumns("SOFT"))), true, instant);
+    const instant = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    commandBoard(board, fitToBoard(textColumns("SOFT")), true, instant);
 
     draw();
     if (hasActive(board)) start.current();
@@ -186,18 +202,27 @@ export default function FlipDotDemo() {
 
   const showText = useCallback(
     (value: string) => {
-      setScrolling(false);
-      show(columnsToBitmap(centerColumns(textColumns(value))), true);
+      const columns = textColumns(value);
+      const fits = columns.length <= COLS;
+      const canScroll = !reduced;
+      setScrolling(!fits && canScroll);
+      // fits: show it centered. doesn't fit but can't scroll (reduced motion):
+      // fall back to the squeezed static version rather than nothing at all
+      if (fits || !canScroll) show(fitToBoard(columns), true);
       setCaption(value.trim() || "a blank board");
     },
-    [show],
+    [show, reduced],
   );
 
   // scrolling ticker: one column per step, with the board waiting for each
   // flip to settle before the next
   useEffect(() => {
     if (!scrolling || reduced) return;
-    const columns = [...blankColumns(COLS), ...textColumns(text || " "), ...blankColumns(COLS)];
+    const columns = [
+      ...blankColumns(COLS),
+      ...textColumns(text || " "),
+      ...blankColumns(COLS),
+    ];
     const windows = columns.length - COLS + 1;
     let offset = 0;
     const interval = window.setInterval(
@@ -342,15 +367,25 @@ export default function FlipDotDemo() {
           >
             slow motion
           </button>
-          <button type="button" className="scd-btn" aria-pressed={sound} onClick={toggleSound}>
+          <button
+            type="button"
+            className="scd-btn"
+            aria-pressed={sound}
+            onClick={toggleSound}
+          >
             sound
           </button>
         </div>
 
         <p className="scd-note">
-          {DOTS} discs, each held in place by a magnet. click or drag on the board to flip dots by hand. a real dot
-          flips in about ten milliseconds, so slow motion is on to let you watch the disc hit its stop and rattle.
-          {reduced ? " reduced motion is on, so dots flip instantly and scrolling is off." : ""}
+          {DOTS} discs, each held in place by a magnet. click or drag on the
+          board to flip dots by hand. a real dot flips in about ten
+          milliseconds, so slow motion is on to let you watch the disc hit its
+          stop and rattle. a message wider than the board scrolls automatically,
+          the way a transit sign would.
+          {reduced
+            ? " reduced motion is on, so dots flip instantly and scrolling is off."
+            : ""}
         </p>
       </div>
     </div>
