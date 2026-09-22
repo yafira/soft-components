@@ -20,8 +20,8 @@ export default function FlipDotPage() {
         <h1>flip-dot</h1>
         <p className={styles.lede}>
           A display made of magnetized discs. Each one flips between two faces
-          and stays put with the power off. Type a message, or flip dots by
-          hand — and slow it down to watch a disc land.
+          and stays put with the power off. Type a message, or flip dots by hand
+          — and slow it down to watch a disc land.
         </p>
       </header>
 
@@ -52,8 +52,8 @@ export default function FlipDotPage() {
         <p>
           In the model, each disc is a torsion pendulum in a double well. The
           magnet pulls it toward face up or face down, and a short coil pulse
-          pushes it over the barrier in between. It flips, hits a hard stop,
-          and bounces off it a little. That bounce is the click.
+          pushes it over the barrier in between. It flips, hits a hard stop, and
+          bounces off it a little. That bounce is the click.
         </p>
         <pre>
           <code>{`// the magnet pulls the disc toward angle 0 or pi,
@@ -88,19 +88,39 @@ if (theta > Math.PI) {
         </p>
       </section>
 
+      <section aria-labelledby="why-h">
+        <h2 id="why-h">why it&apos;s here</h2>
+        <p>
+          Nothing about a flip-dot is textile. It earns its place in this
+          library for what it does, not what it&apos;s made of: it holds a bit
+          with no power, flips it with one pulse, and tells you it flipped with
+          a sound, the same logic a soft sensor uses to tell your finger
+          something changed. Irene Posch and Ebru Kurbak&apos;s{" "}
+          <a href="https://www.ireneposch.net/the-embroidered-computer/">
+            Embroidered Computer
+          </a>{" "}
+          makes the connection literal: its memory is built from magnetic beads
+          and gold thread, sewn into relays that flip between states the same
+          way a flip-dot does, just woven instead of molded. It&apos;s a working
+          precedent for a soft, physically bistable digital element — the same
+          problem this entry is circling, solved in thread rather than plastic.
+        </p>
+      </section>
+
       <section aria-labelledby="context-h">
         <h2 id="context-h">when to use it</h2>
         <p>
           Flip-dots come from transit signs and scoreboards. They are readable
-          in sunlight, they hold their message with the power off, and they
-          make a sound a screen cannot fake. Reach for one when a display
-          should change rarely and be felt as much as read — the same trade the
-          e-ink refresh makes.
+          in sunlight, they hold their message with the power off, and they make
+          a sound a screen cannot fake. Reach for one when a display should
+          change rarely and be felt as much as read — the same trade the e-ink
+          refresh makes.
         </p>
         <p className={styles.footNav}>
           <Link href="/#library">← back to the library</Link>
           <span>
-            related: <Link href="/components/eink-refresh">e-ink refresh →</Link>
+            related:{" "}
+            <Link href="/components/eink-refresh">e-ink refresh →</Link>
           </span>
         </p>
       </section>
